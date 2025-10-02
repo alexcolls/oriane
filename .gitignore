@@ -1,0 +1,109 @@
+# Git internals
+_git/
+
+# AWS Credentials & Keys
+ec2/keys/
+*.pem
+keys/
+
+# Environment variables
+.env
+.env.*
+!.env.sample
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.so.*
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+vpf-env/
+
+# Node
+node_modules/
+.nuxt/
+.output/
+.next/
+dist/
+bun.lockb
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test outputs & temp
+tmp/
+.output/
+.backup/
+
+# Build artifacts & binaries
+*.tar
+*.zip
+*.bin
+gpu_batch_crop
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+qdrant/storage/
+
+# Model files
+*.pth
+*.pt
+*.onnx
+*.h5
+*.pb
+models/
+
+# Media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+test/
+tests/
+videos/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Poetry
+poetry.lock
+
+# Docker
+*.dockerignore
