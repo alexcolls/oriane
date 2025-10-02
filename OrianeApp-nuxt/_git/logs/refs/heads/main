@@ -1,0 +1,16 @@
+0000000000000000000000000000000000000000 00fc659ebb104cd0d04492f64c0266a78fdb7e3e quantium-rock <alexcollsoutumuro@gmail.com> 1748943094 +0200	clone: from github.com:Orianexyz/OrianeApp-nuxt.git
+00fc659ebb104cd0d04492f64c0266a78fdb7e3e 92a8cf3254527aa44b2dee36434a92fd5e7df218 quantium-rock <alexcollsoutumuro@gmail.com> 1749845095 +0200	merge dev: Fast-forward
+92a8cf3254527aa44b2dee36434a92fd5e7df218 f74fdc34d0101ab5aeff3dea113892db7757f0ac quantium-rock <alexcollsoutumuro@gmail.com> 1750185761 +0200	merge dev: Fast-forward
+f74fdc34d0101ab5aeff3dea113892db7757f0ac dd94cde28c97aa1446bc063b0c54d5edc2f92cb5 quantium-rock <alexcollsoutumuro@gmail.com> 1750186019 +0200	merge dev: Fast-forward
+dd94cde28c97aa1446bc063b0c54d5edc2f92cb5 b6ee30c6062c03bff711b1f8ba09fa2bc4988ead quantium-rock <alexcollsoutumuro@gmail.com> 1751767917 +0200	merge dev: Fast-forward
+b6ee30c6062c03bff711b1f8ba09fa2bc4988ead bfafc315534d4f111c120fbb1c681f6825275cea quantium-rock <alexcollsoutumuro@gmail.com> 1751842267 +0200	merge dev: Fast-forward
+bfafc315534d4f111c120fbb1c681f6825275cea a819200b3cc66769cc5d04772f38f9c9b1ff77d8 quantium-rock <alexcollsoutumuro@gmail.com> 1752493561 +0200	merge dev: Fast-forward
+a819200b3cc66769cc5d04772f38f9c9b1ff77d8 71c532286cdc725ca28082c74dc743c9914ba503 quantium-rock <alexcollsoutumuro@gmail.com> 1756195861 +0200	merge dev: Fast-forward
+71c532286cdc725ca28082c74dc743c9914ba503 5f1c4d86b3a9a7f2a531b8d8bf66128632a5a209 quantium-rock <alexcollsoutumuro@gmail.com> 1756279733 +0200	merge dev: Fast-forward
+5f1c4d86b3a9a7f2a531b8d8bf66128632a5a209 13e973c2ac3b28be24cd467473865f1b7e1cfbf9 quantium-rock <alexcollsoutumuro@gmail.com> 1756891610 +0200	merge dev: Fast-forward
+13e973c2ac3b28be24cd467473865f1b7e1cfbf9 084537c497fc2146a420bf146a14ba6d9010a974 quantium-rock <alexcollsoutumuro@gmail.com> 1757062788 +0200	pull: Fast-forward
+084537c497fc2146a420bf146a14ba6d9010a974 bd3fdb10a4aa1425ad93646de025df43dcb27b75 quantium-rock <alexcollsoutumuro@gmail.com> 1757063671 +0200	commit: docs: update CHANGELOG
+bd3fdb10a4aa1425ad93646de025df43dcb27b75 f343ab88976e405fd851e9ab783ba973f3d1917e quantium-rock <alexcollsoutumuro@gmail.com> 1757063692 +0200	pull --rebase (finish): refs/heads/main onto 06461d46dcb47200aa83ecff47420019da220c6e
+f343ab88976e405fd851e9ab783ba973f3d1917e 38f56461bf75d9934167d46a55717541aad7eacf quantium-rock <alexcollsoutumuro@gmail.com> 1757069441 +0200	commit: add .dockerignore
+38f56461bf75d9934167d46a55717541aad7eacf 5b8d0411a77810f6a38759133f4d707fd30242a8 quantium-rock <alexcollsoutumuro@gmail.com> 1757069452 +0200	commit: add .dockerignore
+5b8d0411a77810f6a38759133f4d707fd30242a8 5f5a4b2ddbfa98ea6801728e7643a86cebfded21 quantium-rock <alexcollsoutumuro@gmail.com> 1757069821 +0200	commit: remove .env form .dockerignore

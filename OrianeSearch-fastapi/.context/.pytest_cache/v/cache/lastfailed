@@ -1,0 +1,17 @@
+{
+  "tests/integration/test_api_endpoints.py::TestHealthEndpoints::test_ready_endpoint": true,
+  "tests/integration/test_api_endpoints.py::TestSearchEndpoints::test_search_by_text": true,
+  "tests/integration/test_api_endpoints.py::TestSearchEndpoints::test_search_by_text_empty_query": true,
+  "tests/integration/test_api_endpoints.py::TestSearchEndpoints::test_search_by_image": true,
+  "tests/integration/test_api_endpoints.py::TestSearchEndpoints::test_search_by_image_invalid_file": true,
+  "tests/integration/test_api_endpoints.py::TestContentEndpoints::test_upload_image": true,
+  "tests/integration/test_api_endpoints.py::TestContentEndpoints::test_upload_images_batch": true,
+  "tests/integration/test_api_endpoints.py::TestContentEndpoints::test_upload_image_invalid_user_id": true,
+  "tests/integration/test_api_endpoints.py::TestContentEndpoints::test_upload_non_image_file": true,
+  "tests/integration/test_api_endpoints.py::TestMiddleware::test_cors_headers": true,
+  "tests/integration/test_api_endpoints.py::TestMiddleware::test_security_headers": true,
+  "tests/unit/test_qdrant_service.py::TestQdrantService::test_qdrant_service_initialization_success": true,
+  "tests/unit/test_qdrant_service.py::TestQdrantService::test_client_property_lazy_initialization": true,
+  "tests/unit/test_qdrant_service.py::TestQdrantService::test_search_connection_error": true,
+  "tests/unit/test_qdrant_service.py::TestRetryDecorator::test_singleton_get_qdrant_service": true
+}

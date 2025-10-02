@@ -1,0 +1,40 @@
+0000000000000000000000000000000000000000 fa776dad49dd07513b8aec63930c4c7eec2cc69d quantium-rock <alexcollsoutumuro@gmail.com> 1749396406 +0200	branch: Created from HEAD
+fa776dad49dd07513b8aec63930c4c7eec2cc69d dc82d2f8994a3d497a22d740519861085d88fc38 quantium-rock <alexcollsoutumuro@gmail.com> 1749400356 +0200	commit: add 404 page
+dc82d2f8994a3d497a22d740519861085d88fc38 66f6f199adde666a6f4cd8e6a009ae4077b608d7 quantium-rock <alexcollsoutumuro@gmail.com> 1749401379 +0200	commit: update credits
+66f6f199adde666a6f4cd8e6a009ae4077b608d7 bae01f8bdd25ab36945054572739afde93d7c1ff quantium-rock <alexcollsoutumuro@gmail.com> 1749433287 +0200	commit: upgrade videoGrid
+bae01f8bdd25ab36945054572739afde93d7c1ff 189b6fdf3d8ab39180dde19ce6775fe7722adb28 quantium-rock <alexcollsoutumuro@gmail.com> 1749437561 +0200	commit: add db service
+189b6fdf3d8ab39180dde19ce6775fe7722adb28 615bbcb7b37d217bb3f8bddbc014f90095adb247 quantium-rock <alexcollsoutumuro@gmail.com> 1749504533 +0200	commit: upgrade video-grid, fast loader
+615bbcb7b37d217bb3f8bddbc014f90095adb247 b9c0c2c6867d5408e83e45be3580b40554cc2f6b quantium-rock <alexcollsoutumuro@gmail.com> 1749555613 +0200	commit: upgrade BtnGrid
+b9c0c2c6867d5408e83e45be3580b40554cc2f6b d2202be9c07d15160dfe2a90e134b1e6d2c68d67 quantium-rock <alexcollsoutumuro@gmail.com> 1749557726 +0200	commit: add server/database
+d2202be9c07d15160dfe2a90e134b1e6d2c68d67 05dcf7c638672098bc2ecd7521b1a94554dd4a59 quantium-rock <alexcollsoutumuro@gmail.com> 1749566616 +0200	commit: add db connection and client
+05dcf7c638672098bc2ecd7521b1a94554dd4a59 83de0919770e90ad08ca447a645dabea8c990623 quantium-rock <alexcollsoutumuro@gmail.com> 1749568460 +0200	commit: add phoneWidth and phoneHeight to BtnGrid
+83de0919770e90ad08ca447a645dabea8c990623 e21d19571f12b875ba811198a988f0d4edf6f413 quantium-rock <alexcollsoutumuro@gmail.com> 1749575512 +0200	commit: update BtnGrid margins
+e21d19571f12b875ba811198a988f0d4edf6f413 94be8eb58755e4da2b72ce679e73657666acc3d3 quantium-rock <alexcollsoutumuro@gmail.com> 1749669095 +0200	commit: add apiKeys endpoints
+94be8eb58755e4da2b72ce679e73657666acc3d3 d7b2153f1e0e92db7e12a6aebafb4cba68d97376 quantium-rock <alexcollsoutumuro@gmail.com> 1749710030 +0200	merge dev: Merge made by the 'ort' strategy.
+d7b2153f1e0e92db7e12a6aebafb4cba68d97376 1a420f9512c5a8bae872ebf11e35f021337f8852 quantium-rock <alexcollsoutumuro@gmail.com> 1749749889 +0200	revert: Revert "Merge branch 'dev' into feat/api-page"
+1a420f9512c5a8bae872ebf11e35f021337f8852 4b62f4e69b8d57c10a7092a34c06c5c1c4b86a05 quantium-rock <alexcollsoutumuro@gmail.com> 1749805937 +0200	commit: add theme
+4b62f4e69b8d57c10a7092a34c06c5c1c4b86a05 61616b838ce3f9d79a9b04420208a2888c6911b7 quantium-rock <alexcollsoutumuro@gmail.com> 1749809230 +0200	commit: update sidebar
+61616b838ce3f9d79a9b04420208a2888c6911b7 5996865697a7095136012741b7b55087b7b37a72 quantium-rock <alexcollsoutumuro@gmail.com> 1749809632 +0200	commit: update BtnIcon
+5996865697a7095136012741b7b55087b7b37a72 d422837cc60a973aa2d2c03c3fb54b26a894e329 quantium-rock <alexcollsoutumuro@gmail.com> 1749809938 +0200	commit: update sidebar
+d422837cc60a973aa2d2c03c3fb54b26a894e329 d68190643ffb538718de6027bef0734bcbfe1ba5 quantium-rock <alexcollsoutumuro@gmail.com> 1749811097 +0200	commit: substitue neutral-200/800 for nobel/onyx colors
+d68190643ffb538718de6027bef0734bcbfe1ba5 ab9e53592ec0d55e61c6a11a6b5ba0d5afc3c283 quantium-rock <alexcollsoutumuro@gmail.com> 1749811839 +0200	commit: fix BtnBlack
+ab9e53592ec0d55e61c6a11a6b5ba0d5afc3c283 290bfe1d140df7eafc08b8fd8c24d545ee79fc48 quantium-rock <alexcollsoutumuro@gmail.com> 1749812117 +0200	commit: clean ui store
+290bfe1d140df7eafc08b8fd8c24d545ee79fc48 60e8b392a0c962579c13524b257f9ba99ea2b3a2 quantium-rock <alexcollsoutumuro@gmail.com> 1749812477 +0200	commit: fix BtnBlack
+60e8b392a0c962579c13524b257f9ba99ea2b3a2 3ac3463787936f4b75ae5c4228e74885892b45f0 quantium-rock <alexcollsoutumuro@gmail.com> 1749814625 +0200	commit: add NuxtImg
+3ac3463787936f4b75ae5c4228e74885892b45f0 f8835291b7f7fe782224e25ab6b1abb551d9cc6a quantium-rock <alexcollsoutumuro@gmail.com> 1749815534 +0200	commit: update BgVideoGrid border
+f8835291b7f7fe782224e25ab6b1abb551d9cc6a d10954e1b233eb7eb64673d5ef46e0fddd33e9be quantium-rock <alexcollsoutumuro@gmail.com> 1749818309 +0200	commit: update NavItem
+d10954e1b233eb7eb64673d5ef46e0fddd33e9be dd9a2740f46c01b93f570d31d15b954526426d9e quantium-rock <alexcollsoutumuro@gmail.com> 1749819939 +0200	commit: finish theme
+dd9a2740f46c01b93f570d31d15b954526426d9e 2344b088a7013b823b8b62a9369af162a6fd84d1 quantium-rock <alexcollsoutumuro@gmail.com> 1749820192 +0200	commit: finish theme
+2344b088a7013b823b8b62a9369af162a6fd84d1 364a89a91f8f7f77edecbfa11fd93192e45d0e36 quantium-rock <alexcollsoutumuro@gmail.com> 1750026449 +0200	commit: update sql tables
+364a89a91f8f7f77edecbfa11fd93192e45d0e36 43d1f162ab2bd211789f4fe2189faa649646a5cb quantium-rock <alexcollsoutumuro@gmail.com> 1750031912 +0200	commit: arch api
+43d1f162ab2bd211789f4fe2189faa649646a5cb ef3d13e66ca2b53ef770ab349f72d815533d2a76 quantium-rock <alexcollsoutumuro@gmail.com> 1750032143 +0200	commit: add api docs start
+ef3d13e66ca2b53ef770ab349f72d815533d2a76 1b74f79d8dc5948737a93b71b96ed0dead3ff6b9 quantium-rock <alexcollsoutumuro@gmail.com> 1750032386 +0200	commit: update client endpoints
+1b74f79d8dc5948737a93b71b96ed0dead3ff6b9 cca3839b3c0e0b52d0bf1420f7250f902c46cc55 quantium-rock <alexcollsoutumuro@gmail.com> 1750058401 +0200	commit: upgrade api/app/auth/*.ts
+cca3839b3c0e0b52d0bf1420f7250f902c46cc55 255d87b5058931dbdfd7cbb8de725677ab943fa0 quantium-rock <alexcollsoutumuro@gmail.com> 1750058915 +0200	commit: upgrade BgVideoGrid & BgSkeletonGrid
+255d87b5058931dbdfd7cbb8de725677ab943fa0 cc1957515b2a7fe7653b17782bdf70d1f70ced93 quantium-rock <alexcollsoutumuro@gmail.com> 1750062091 +0200	commit: add useToasts
+cc1957515b2a7fe7653b17782bdf70d1f70ced93 3f1370f8c8ee78e9165b571a51bb2d838237712a quantium-rock <alexcollsoutumuro@gmail.com> 1750062481 +0200	commit: upgrade Account layout
+3f1370f8c8ee78e9165b571a51bb2d838237712a 6f264948f3822c2a0fbc5a0e06e7e239d18cbc12 quantium-rock <alexcollsoutumuro@gmail.com> 1750064594 +0200	commit: add verify user in db for api/app/auth/login.post.ts
+6f264948f3822c2a0fbc5a0e06e7e239d18cbc12 627461e3bef84e5e8a6f24730dc5257d5f067d14 quantium-rock <alexcollsoutumuro@gmail.com> 1750071313 +0200	commit: add api keys functionality
+627461e3bef84e5e8a6f24730dc5257d5f067d14 92f1e30769904fd219ce1bc085b5d412c3fb25e3 quantium-rock <alexcollsoutumuro@gmail.com> 1750159617 +0200	commit: upgrade api keys
+92f1e30769904fd219ce1bc085b5d412c3fb25e3 af5138e51019c54d9e31da601de876151e637280 quantium-rock <alexcollsoutumuro@gmail.com> 1750159754 +0200	commit: upgrade api keys
+af5138e51019c54d9e31da601de876151e637280 03436fce519ae3845f1ffd5f180eecd6121700f6 quantium-rock <alexcollsoutumuro@gmail.com> 1750185717 +0200	commit: finish apiKeys v1

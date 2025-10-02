@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 7aebd356792ce2043382b1b4b87ce5df044d746d quantium-rock <alexcollsoutumuro@gmail.com> 1751850997 +0200	branch: Created from HEAD
+7aebd356792ce2043382b1b4b87ce5df044d746d 280d9a800a010e9fa811b7d6b3b25a7889be5845 quantium-rock <alexcollsoutumuro@gmail.com> 1752019516 +0200	merge feat/video-search: Fast-forward
+280d9a800a010e9fa811b7d6b3b25a7889be5845 750f9410bb97f974aaa01993e184c5679266c9bf quantium-rock <alexcollsoutumuro@gmail.com> 1752021920 +0200	commit: v0.3.0
+750f9410bb97f974aaa01993e184c5679266c9bf 9812b4b1bf55810011ec2ca2a7044771a2d32c30 quantium-rock <alexcollsoutumuro@gmail.com> 1752063323 +0200	commit: add scalar api/docs
+9812b4b1bf55810011ec2ca2a7044771a2d32c30 35bfbbc1d5978cfd3ec24ef854bbd8dc515efb30 quantium-rock <alexcollsoutumuro@gmail.com> 1752068943 +0200	commit: add scalar api/docs
+35bfbbc1d5978cfd3ec24ef854bbd8dc515efb30 90b7ff1f5a0b572214ec76ea5197735f4b258a8e quantium-rock <alexcollsoutumuro@gmail.com> 1752070205 +0200	commit: add logins timestamp
+90b7ff1f5a0b572214ec76ea5197735f4b258a8e 14400e08e98bf95656c96e8d2397d2c6f309ee64 quantium-rock <alexcollsoutumuro@gmail.com> 1752484987 +0200	commit: fix uploading UX
+14400e08e98bf95656c96e8d2397d2c6f309ee64 1fbf3a3ad6ef18c2fbb3379091d7480bebf64c29 quantium-rock <alexcollsoutumuro@gmail.com> 1752492233 +0200	commit: fix InputBox ui
+1fbf3a3ad6ef18c2fbb3379091d7480bebf64c29 a819200b3cc66769cc5d04772f38f9c9b1ff77d8 quantium-rock <alexcollsoutumuro@gmail.com> 1752493519 +0200	commit: 0.3.3

@@ -1,0 +1,2 @@
+[console_scripts]
+oriane-sdk = oriane_extraction_sdk.cli:main

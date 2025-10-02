@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 c7ad4899a0a65d73785350e39c3d03b2b014c4a0 quantium-rock <alexcollsoutumuro@gmail.com> 1756115593 +0200	branch: Created from HEAD
+c7ad4899a0a65d73785350e39c3d03b2b014c4a0 0fa9ef16da2e1702d08312df23c6a22557f6b0e1 quantium-rock <alexcollsoutumuro@gmail.com> 1756187659 +0200	commit: feat: add download video button and platform button
+0fa9ef16da2e1702d08312df23c6a22557f6b0e1 0b6ad709ee17322922a5ade03fa38dcf8e18f585 quantium-rock <alexcollsoutumuro@gmail.com> 1756191011 +0200	commit: docs: add CHANGELOG
+0b6ad709ee17322922a5ade03fa38dcf8e18f585 dfef906d6e206654de74541c2310385b8dbddcb1 quantium-rock <alexcollsoutumuro@gmail.com> 1756193973 +0200	commit: feat: add search results download csv & json
+dfef906d6e206654de74541c2310385b8dbddcb1 291e1ac02a7aef7478a1c89f4a686f49d7786479 quantium-rock <alexcollsoutumuro@gmail.com> 1756194983 +0200	commit: feat: add account shortcuts
+291e1ac02a7aef7478a1c89f4a686f49d7786479 20ebc066638169f4bfaf33c3d0e33ed201532a7e quantium-rock <alexcollsoutumuro@gmail.com> 1756195025 +0200	commit: realese: 0.3.7
+20ebc066638169f4bfaf33c3d0e33ed201532a7e 5ad3091937ee27899ff81455ad1c2a723f02bcd7 quantium-rock <alexcollsoutumuro@gmail.com> 1756195755 +0200	commit: docs: update CHANGELOG
+5ad3091937ee27899ff81455ad1c2a723f02bcd7 eff6d74aef60996779a938dcaedbee4faa9c970d quantium-rock <alexcollsoutumuro@gmail.com> 1756195779 +0200	commit: docs: update CHANGELOG
+eff6d74aef60996779a938dcaedbee4faa9c970d 71c532286cdc725ca28082c74dc743c9914ba503 quantium-rock <alexcollsoutumuro@gmail.com> 1756195795 +0200	commit: docs: update CHANGELOG

@@ -1,0 +1,35 @@
+import { ExtractionError } from './extraction-errors.entity';
+import { InstaProfile } from './insta-profiles.entity';
+export declare class InstaContent {
+    id: string;
+    mediaId: string;
+    userId: string;
+    instaProfile: InstaProfile;
+    username: string;
+    status: string | null;
+    code: string;
+    caption?: string | null;
+    createdAt: Date;
+    publishDate: Date;
+    isMonitored: boolean | null;
+    isWatched: boolean | null;
+    igPlayCount: number | null;
+    reshareCount: number | null;
+    commentCount: number | null;
+    likeCount: number | null;
+    videoUrl?: string | null;
+    isExtracted: boolean | null;
+    isRemoved: boolean | null;
+    imageUrl?: string | null;
+    coauthorProducers?: string[] | null;
+    lastRefreshedAt?: Date | null;
+    updatedAt?: Date | null;
+    monitoredBy?: string[] | null;
+    searchText?: string | null;
+    isDownloaded: boolean;
+    duration?: number | null;
+    isEmbedded: boolean;
+    frames?: number | null;
+    isCropped: boolean | null;
+    errors: ExtractionError[];
+}

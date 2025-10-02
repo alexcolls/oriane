@@ -1,0 +1,80 @@
+0000000000000000000000000000000000000000 ee851b00e2c3f20b107f2417251a1028c6303a4e quantium-rock <alexcollsoutumuro@gmail.com> 1748943121 +0200	branch: Created from origin/dev
+ee851b00e2c3f20b107f2417251a1028c6303a4e 718defcd07be12dfb429d151e8e5efcd6db0e966 quantium-rock <alexcollsoutumuro@gmail.com> 1748943643 +0200	commit: remove current nuxt app to start fresh
+718defcd07be12dfb429d151e8e5efcd6db0e966 4cece4ab3bdcc37a3ae3bdeae554d2b6ca2b8089 quantium-rock <alexcollsoutumuro@gmail.com> 1748956984 +0200	commit: init
+4cece4ab3bdcc37a3ae3bdeae554d2b6ca2b8089 7306b2b2047a00e4d1050efb7eabbf59552ec9da quantium-rock <alexcollsoutumuro@gmail.com> 1748958038 +0200	commit: init
+7306b2b2047a00e4d1050efb7eabbf59552ec9da da70e99b61278af9342cab042debf9dfcd72e236 quantium-rock <alexcollsoutumuro@gmail.com> 1748959874 +0200	commit: add store
+da70e99b61278af9342cab042debf9dfcd72e236 ef7d6923a500d6f42cd83bf2f1346690f33398c8 quantium-rock <alexcollsoutumuro@gmail.com> 1748960221 +0200	commit: add layout
+ef7d6923a500d6f42cd83bf2f1346690f33398c8 b3068cca08f787522428e806bd9a43114f224853 quantium-rock <alexcollsoutumuro@gmail.com> 1748962072 +0200	commit: add i18n
+b3068cca08f787522428e806bd9a43114f224853 9a39f4ed41ac9bfb39e68707b9e080fa4716aaed quantium-rock <alexcollsoutumuro@gmail.com> 1748965470 +0200	commit: add api docs
+9a39f4ed41ac9bfb39e68707b9e080fa4716aaed e7f7a01b429c32caa53f27efaef021b895315a04 quantium-rock <alexcollsoutumuro@gmail.com> 1748984595 +0200	commit: add login
+e7f7a01b429c32caa53f27efaef021b895315a04 c36576d0d778cb328393b7d8c90815d2ac4d3f30 quantium-rock <alexcollsoutumuro@gmail.com> 1749039769 +0200	commit: add auth middleware
+c36576d0d778cb328393b7d8c90815d2ac4d3f30 50599fc67c13042ce375131fc28149edbee4e9eb quantium-rock <alexcollsoutumuro@gmail.com> 1749040822 +0200	commit: fix default locale
+50599fc67c13042ce375131fc28149edbee4e9eb 5cf4abdc5dc1b23d45c78b5d320eff60ead1f754 quantium-rock <alexcollsoutumuro@gmail.com> 1749044878 +0200	commit: add layouts
+5cf4abdc5dc1b23d45c78b5d320eff60ead1f754 3e8e12846e98549008609a989dfa22f6d3836d9e quantium-rock <alexcollsoutumuro@gmail.com> 1749049671 +0200	commit: add sidebar
+3e8e12846e98549008609a989dfa22f6d3836d9e aef5189ccd3094a74a50c17fa0fa49a06cd59fe4 quantium-rock <alexcollsoutumuro@gmail.com> 1749056263 +0200	commit: add navbar
+aef5189ccd3094a74a50c17fa0fa49a06cd59fe4 5173564858955a5bb44ffc725d2415c78d7d7863 quantium-rock <alexcollsoutumuro@gmail.com> 1749108813 +0200	commit: finish sidebar
+5173564858955a5bb44ffc725d2415c78d7d7863 5f98a6109027219f99424fb6f283ab1ea878d19f quantium-rock <alexcollsoutumuro@gmail.com> 1749123426 +0200	commit: finish layout
+5f98a6109027219f99424fb6f283ab1ea878d19f f699a75a363c51be312edefee96195d9a155c63c quantium-rock <alexcollsoutumuro@gmail.com> 1749189114 +0200	commit: add signup
+f699a75a363c51be312edefee96195d9a155c63c 5cd83397ecbdd74c8ff81fcca26ebf13ea557150 quantium-rock <alexcollsoutumuro@gmail.com> 1749189149 +0200	pull --rebase (finish): refs/heads/dev onto b6ee8351d2399213e3bd64b3f8c423013aba059a
+5cd83397ecbdd74c8ff81fcca26ebf13ea557150 002ecf96aa5e4cfb2222c0c1d831970a67b83a62 quantium-rock <alexcollsoutumuro@gmail.com> 1749192544 +0200	commit: add BgVideoGrid
+002ecf96aa5e4cfb2222c0c1d831970a67b83a62 853c276d4e3454e3a7a5a1e309d272bdb530d6f3 quantium-rock <alexcollsoutumuro@gmail.com> 1749193306 +0200	commit: add BgVideoGrid
+853c276d4e3454e3a7a5a1e309d272bdb530d6f3 959060294e214485720ff3f4193d47ad1d102afa quantium-rock <alexcollsoutumuro@gmail.com> 1749205109 +0200	commit: upgrade ui
+959060294e214485720ff3f4193d47ad1d102afa d5d9fa1f6399f35a054d3ddee9e7b64f13819b6e quantium-rock <alexcollsoutumuro@gmail.com> 1749205233 +0200	rebase (finish): refs/heads/dev onto 52190193db226913710d087ae44d5a720f046a7d
+d5d9fa1f6399f35a054d3ddee9e7b64f13819b6e 8faf0aa1e14c732abfe89bfca3bbff40a06d0cc0 quantium-rock <alexcollsoutumuro@gmail.com> 1749205397 +0200	pull: Fast-forward
+8faf0aa1e14c732abfe89bfca3bbff40a06d0cc0 6a7c32775cdbc2ac0a55ad3f9165deab42707fee quantium-rock <alexcollsoutumuro@gmail.com> 1749205696 +0200	commit: extract app config from nuxt.config
+6a7c32775cdbc2ac0a55ad3f9165deab42707fee 60091111c9cd412cbf2c43163683b3745b7f0567 quantium-rock <alexcollsoutumuro@gmail.com> 1749206410 +0200	commit: fix layout transition
+60091111c9cd412cbf2c43163683b3745b7f0567 ee75441f9b8d7f405f54ebee13b3b144cbe99dd6 quantium-rock <alexcollsoutumuro@gmail.com> 1749219771 +0200	commit: upgrade logout
+ee75441f9b8d7f405f54ebee13b3b144cbe99dd6 2251387fa0d242388de27f8f5d3bf7b288ae7b53 quantium-rock <alexcollsoutumuro@gmail.com> 1749287596 +0200	commit: add forgot pass & reset pass
+2251387fa0d242388de27f8f5d3bf7b288ae7b53 91865e2a652694da23aa61a4315be4a9a257857e quantium-rock <alexcollsoutumuro@gmail.com> 1749287631 +0200	pull --no-rebase: Merge made by the 'ort' strategy.
+91865e2a652694da23aa61a4315be4a9a257857e 09c7388f4ced808772f25b187b782d8dd45b7689 quantium-rock <alexcollsoutumuro@gmail.com> 1749287687 +0200	commit: uncomment middleware
+09c7388f4ced808772f25b187b782d8dd45b7689 fde38bc5b7b60a841f7e0ec17cafe032f6bc36ac quantium-rock <alexcollsoutumuro@gmail.com> 1749373751 +0200	commit: upgrade pages middleware
+fde38bc5b7b60a841f7e0ec17cafe032f6bc36ac fa776dad49dd07513b8aec63930c4c7eec2cc69d quantium-rock <alexcollsoutumuro@gmail.com> 1749396308 +0200	commit: finish Account page
+fa776dad49dd07513b8aec63930c4c7eec2cc69d 66f6f199adde666a6f4cd8e6a009ae4077b608d7 quantium-rock <alexcollsoutumuro@gmail.com> 1749401393 +0200	merge feat/api-page: Fast-forward
+66f6f199adde666a6f4cd8e6a009ae4077b608d7 615bbcb7b37d217bb3f8bddbc014f90095adb247 quantium-rock <alexcollsoutumuro@gmail.com> 1749504585 +0200	merge feat/api-page: Fast-forward
+615bbcb7b37d217bb3f8bddbc014f90095adb247 67158f46e0ac08306a0020d563a78513903aa1a5 quantium-rock <alexcollsoutumuro@gmail.com> 1749669121 +0200	pull: Fast-forward
+67158f46e0ac08306a0020d563a78513903aa1a5 2344b088a7013b823b8b62a9369af162a6fd84d1 quantium-rock <alexcollsoutumuro@gmail.com> 1749845017 +0200	merge feat/api-page: Fast-forward
+2344b088a7013b823b8b62a9369af162a6fd84d1 92a8cf3254527aa44b2dee36434a92fd5e7df218 quantium-rock <alexcollsoutumuro@gmail.com> 1749845070 +0200	pull --no-rebase: Merge made by the 'ort' strategy.
+92a8cf3254527aa44b2dee36434a92fd5e7df218 f74fdc34d0101ab5aeff3dea113892db7757f0ac quantium-rock <alexcollsoutumuro@gmail.com> 1750185739 +0200	merge feat/api-page: Merge made by the 'ort' strategy.
+f74fdc34d0101ab5aeff3dea113892db7757f0ac dd94cde28c97aa1446bc063b0c54d5edc2f92cb5 quantium-rock <alexcollsoutumuro@gmail.com> 1750186008 +0200	commit: update .env
+dd94cde28c97aa1446bc063b0c54d5edc2f92cb5 02b22828769dae97510df309001ebdabba6d5a01 quantium-rock <alexcollsoutumuro@gmail.com> 1750201840 +0200	commit: fix delete key modal
+02b22828769dae97510df309001ebdabba6d5a01 ae8a6abc018f4c0554966ba5b5bae88cda2db5cc quantium-rock <alexcollsoutumuro@gmail.com> 1750201867 +0200	commit: add i18n to api key status
+ae8a6abc018f4c0554966ba5b5bae88cda2db5cc 63d1a3e0194e123c135c3550da93369f119c9162 quantium-rock <alexcollsoutumuro@gmail.com> 1750201921 +0200	commit: update locales: es.json & fr.json
+63d1a3e0194e123c135c3550da93369f119c9162 701737d29025d98aabb59bdb5e0a38a55ef9524c quantium-rock <alexcollsoutumuro@gmail.com> 1750201936 +0200	commit: fix refresh token
+701737d29025d98aabb59bdb5e0a38a55ef9524c 593ffa9c569c9198be947b72e34ac02b37eca8fa quantium-rock <alexcollsoutumuro@gmail.com> 1750202331 +0200	commit: translate locales
+593ffa9c569c9198be947b72e34ac02b37eca8fa 9a6bc98e67b327c308e7899cd0f5a324395b7561 quantium-rock <alexcollsoutumuro@gmail.com> 1750260805 +0200	commit: fix refresh session
+9a6bc98e67b327c308e7899cd0f5a324395b7561 b6ee30c6062c03bff711b1f8ba09fa2bc4988ead quantium-rock <alexcollsoutumuro@gmail.com> 1751767904 +0200	merge feat/text-chat: Fast-forward
+b6ee30c6062c03bff711b1f8ba09fa2bc4988ead f81543ffe19953f480b607ac2f704eccb1b60ea6 quantium-rock <alexcollsoutumuro@gmail.com> 1751768524 +0200	commit: fix video card hovering info
+f81543ffe19953f480b607ac2f704eccb1b60ea6 27e36316a2bddb31151a8e9a20807fbcbf1733aa quantium-rock <alexcollsoutumuro@gmail.com> 1751769989 +0200	commit: improve video-grid loading
+27e36316a2bddb31151a8e9a20807fbcbf1733aa 2e1c4aceba32d4e94f3bc6c4dc712a6be6e762c8 quantium-rock <alexcollsoutumuro@gmail.com> 1751772908 +0200	commit: upgrade home input search
+2e1c4aceba32d4e94f3bc6c4dc712a6be6e762c8 b804401fe5bee01ba0db60987230fd8459acea7d quantium-rock <alexcollsoutumuro@gmail.com> 1751773210 +0200	commit: 0.1.4
+b804401fe5bee01ba0db60987230fd8459acea7d bfafc315534d4f111c120fbb1c681f6825275cea quantium-rock <alexcollsoutumuro@gmail.com> 1751842250 +0200	merge feat/video-search: Fast-forward
+bfafc315534d4f111c120fbb1c681f6825275cea a819200b3cc66769cc5d04772f38f9c9b1ff77d8 quantium-rock <alexcollsoutumuro@gmail.com> 1752493534 +0200	merge feat/api-docs: Fast-forward
+a819200b3cc66769cc5d04772f38f9c9b1ff77d8 abdab45e735b5b46331aea0c8a667ad5b874b8ee quantium-rock <alexcollsoutumuro@gmail.com> 1752500115 +0200	commit: 0.3.4
+abdab45e735b5b46331aea0c8a667ad5b874b8ee c7ad4899a0a65d73785350e39c3d03b2b014c4a0 quantium-rock <alexcollsoutumuro@gmail.com> 1753298806 +0200	commit: fix qdrant frames s3 path
+c7ad4899a0a65d73785350e39c3d03b2b014c4a0 71c532286cdc725ca28082c74dc743c9914ba503 quantium-rock <alexcollsoutumuro@gmail.com> 1756195844 +0200	merge feat/dowload-csv-results: Fast-forward
+71c532286cdc725ca28082c74dc743c9914ba503 916ded4c98db35eb847e609472d525423a666185 quantium-rock <alexcollsoutumuro@gmail.com> 1756226937 +0200	commit: 🔧 types: Add search-related TypeScript interfaces
+916ded4c98db35eb847e609472d525423a666185 6ef8b2eb2a9601ae435563b8f92613cf2aec4ae0 quantium-rock <alexcollsoutumuro@gmail.com> 1756227012 +0200	commit: 🌍 i18n: Add search error messages and loading text (EN)
+6ef8b2eb2a9601ae435563b8f92613cf2aec4ae0 8216a61a51d1efb7a5265658ce391858df37a6f3 quantium-rock <alexcollsoutumuro@gmail.com> 1756227086 +0200	commit: 🌍 i18n: Add search error messages (ES/FR)
+8216a61a51d1efb7a5265658ce391858df37a6f3 e9aecedae2618fd3743e78b8ccca589c61286a91 quantium-rock <alexcollsoutumuro@gmail.com> 1756227160 +0200	commit: 🔔 toast: Add search-specific error notifications
+e9aecedae2618fd3743e78b8ccca589c61286a91 b784d33f0cbf74bd20f0e562d7df2a35b7cd542c quantium-rock <alexcollsoutumuro@gmail.com> 1756227185 +0200	commit: ✨ composable: Add useLoadingMessages with i18n
+b784d33f0cbf74bd20f0e562d7df2a35b7cd542c 3ecd91415be745534fb8dae05d1e273d45a38ec9 quantium-rock <alexcollsoutumuro@gmail.com> 1756227245 +0200	commit: 🔍 composable: Add useSearchManager with retry logic
+3ecd91415be745534fb8dae05d1e273d45a38ec9 62f504f57bb4a8a5076e9770a59cb0fbbb82c74b quantium-rock <alexcollsoutumuro@gmail.com> 1756227420 +0200	commit: 🧩 component: Extract reusable SearchHeader
+62f504f57bb4a8a5076e9770a59cb0fbbb82c74b edfbd0794837690cbc2128c00bc9afa64ea202f5 quantium-rock <alexcollsoutumuro@gmail.com> 1756227469 +0200	commit: ♻️ refactor: Major Chat Index component overhaul
+edfbd0794837690cbc2128c00bc9afa64ea202f5 974538bb5bc8cb79f5323e0d888b2052f439a680 quantium-rock <alexcollsoutumuro@gmail.com> 1756227499 +0200	commit: 🔧 improve: SearchResults error handling & types
+974538bb5bc8cb79f5323e0d888b2052f439a680 cd99c13e068c394a149cd71368a37a623d4d97a9 quantium-rock <alexcollsoutumuro@gmail.com> 1756227695 +0200	commit: 🔧 improve: Download buttons & component types
+cd99c13e068c394a149cd71368a37a623d4d97a9 734d41d28cb3c2b8f150ef929cfd635c7a799eec quantium-rock <alexcollsoutumuro@gmail.com> 1756227865 +0200	commit: 📝 docs: Update CHANGELOG for v0.4.0 major release
+734d41d28cb3c2b8f150ef929cfd635c7a799eec 106b3b825e3bb554a70c6c5a5f29c017f4aceefb quantium-rock <alexcollsoutumuro@gmail.com> 1756228960 +0200	commit: 🗑️ remove: Delete unused VideoOverlay component
+106b3b825e3bb554a70c6c5a5f29c017f4aceefb 3bc0513c526e052e5ee889d93e5897016f4b4a5e quantium-rock <alexcollsoutumuro@gmail.com> 1756229624 +0200	commit: 💫 simplify: Streamline SearchSkeleton component
+3bc0513c526e052e5ee889d93e5897016f4b4a5e 17f0c4534ae2da2f428ba12b96bd9ce2bbb78412 quantium-rock <alexcollsoutumuro@gmail.com> 1756229643 +0200	commit: 🎬 refactor: Enhance VideoPlayer component
+17f0c4534ae2da2f428ba12b96bd9ce2bbb78412 9af44101fd7af48eca46173a10f6450baaac9b17 quantium-rock <alexcollsoutumuro@gmail.com> 1756229659 +0200	commit: 🎯 improve: Update VideoCard and BtnPlatform components
+9af44101fd7af48eca46173a10f6450baaac9b17 a9e5a89029b1393f04fd9ea7c2796156734e0c5e quantium-rock <alexcollsoutumuro@gmail.com> 1756229690 +0200	commit: 🔧 utils: Add TikTok and LinkedIn platform support
+a9e5a89029b1393f04fd9ea7c2796156734e0c5e 793425a37f09c16a5af2844cc47ab24976848618 quantium-rock <alexcollsoutumuro@gmail.com> 1756229714 +0200	commit: ⚡ api: Increase search result limits for better UX
+793425a37f09c16a5af2844cc47ab24976848618 c7ddc0bea34104f95bd2733c8112a1b4fd3e8cd4 quantium-rock <alexcollsoutumuro@gmail.com> 1756229731 +0200	commit: 🏠 improve: Minor Home InputBox enhancements
+c7ddc0bea34104f95bd2733c8112a1b4fd3e8cd4 2eeb6343b8ec07b8943b4805e511fdb96ae22361 quantium-rock <alexcollsoutumuro@gmail.com> 1756229969 +0200	commit: 📝 docs: Update CHANGELOG for v0.3.8 release
+2eeb6343b8ec07b8943b4805e511fdb96ae22361 cd221b3a4f29803f592c80e02b52ac743a052b09 quantium-rock <alexcollsoutumuro@gmail.com> 1756230500 +0200	commit: 📝 docs: Comprehensive CHANGELOG enhancement
+cd221b3a4f29803f592c80e02b52ac743a052b09 eeeba12501252dc3055f95563abc60dfae79f6a7 quantium-rock <alexcollsoutumuro@gmail.com> 1756276026 +0200	commit: 🔖 version: Bump app version to v0.3.8
+eeeba12501252dc3055f95563abc60dfae79f6a7 b1302cdb7b670a7f5870d0aa51cddd1c718fb1d0 quantium-rock <alexcollsoutumuro@gmail.com> 1756279330 +0200	commit: fix: add loading queue with priority hovered videos for improved search expirience
+b1302cdb7b670a7f5870d0aa51cddd1c718fb1d0 5f1c4d86b3a9a7f2a531b8d8bf66128632a5a209 quantium-rock <alexcollsoutumuro@gmail.com> 1756279671 +0200	commit: rmv console.logs
+5f1c4d86b3a9a7f2a531b8d8bf66128632a5a209 13e973c2ac3b28be24cd467473865f1b7e1cfbf9 quantium-rock <alexcollsoutumuro@gmail.com> 1756634513 +0200	merge feat/search-pagination: Fast-forward
+13e973c2ac3b28be24cd467473865f1b7e1cfbf9 5b8d0411a77810f6a38759133f4d707fd30242a8 quantium-rock <alexcollsoutumuro@gmail.com> 1757069469 +0200	merge main: Fast-forward
+5b8d0411a77810f6a38759133f4d707fd30242a8 5f5a4b2ddbfa98ea6801728e7643a86cebfded21 quantium-rock <alexcollsoutumuro@gmail.com> 1757073262 +0200	merge main: Fast-forward

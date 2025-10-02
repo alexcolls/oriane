@@ -1,0 +1,22 @@
+{
+  "postman.settings.dotenv-detection-notification-visibility": false,
+  "prettier.useTabs": true,
+  "material-icon-theme.files.associations": {
+    "*.dto.ts": "../../icons/nest-dto",
+    "*.entity.ts": "../../icons/nest-entity",
+    "*.service.ts": "../../icons/nest-service",
+    "*.controller.ts": "../../icons/nest-controller",
+    "*.module.ts": "../../icons/nest-module",
+    "*.pipe.ts": "../../icons/nest-pipe",
+    "*.guard.ts": "../../icons/nest-gaurd",
+    "*.gateway.ts": "../../icons/nest-gateway",
+    "*.filter.ts": "../../icons/nest-filter",
+    "*.middleware.ts": "../../icons/nest-middleware",
+    "*.interceptor.ts": "../../icons/nest-interceptor",
+    "*.decorator.ts": "../../icons/nest-decorator",
+    "*.adapter.ts": "../../icons/nest-adapter",
+    "*.input.ts": "../../icons/nest-input",
+    "*.type.ts": "../../icons/nest-type",
+    "*.svg": "../../icons/nest"
+  }
+}

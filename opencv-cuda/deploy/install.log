@@ -1,0 +1,93 @@
+=== Step 1: Install NVIDIA GPG Key ===
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+=== Step 2: Add CUDA Repo Pin ===
+--2025-05-14 12:16:26--  https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
+Resolving developer.download.nvidia.com (developer.download.nvidia.com)... 23.33.143.170, 23.33.143.138
+Connecting to developer.download.nvidia.com (developer.download.nvidia.com)|23.33.143.170|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 190 [application/octet-stream]
+Saving to: ‘cuda-ubuntu2404.pin’
+
+     0K                                                       100%  237M=0s
+
+2025-05-14 12:16:27 (237 MB/s) - ‘cuda-ubuntu2404.pin’ saved [190/190]
+
+=== Step 3: Download and Install CUDA 12.8 Local Repo ===
+(Reading database ... 307296 files and directories currently installed.)
+Preparing to unpack cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.deb ...
+Unpacking cuda-repo-ubuntu2404-12-8-local (12.8.0-570.86.10-1) over (12.8.0-570.86.10-1) ...
+Setting up cuda-repo-ubuntu2404-12-8-local (12.8.0-570.86.10-1) ...
+=== Step 4: Update APT and Install CUDA Toolkit ===
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Get:1 file:/var/cuda-repo-ubuntu2404-12-8-local  InRelease [1,572 B]
+Get:1 file:/var/cuda-repo-ubuntu2404-12-8-local  InRelease [1,572 B]
+Hit:2 https://download.virtualbox.org/virtualbox/debian noble InRelease
+Hit:3 http://security.ubuntu.com/ubuntu noble-security InRelease
+Get:4 https://download.docker.com/linux/ubuntu noble InRelease [48.8 kB]
+Hit:5 https://brave-browser-apt-release.s3.brave.com stable InRelease
+Hit:6 https://dl.google.com/linux/chrome/deb stable InRelease
+Hit:7 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu noble InRelease
+Hit:8 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:9 https://repo.protonvpn.com/debian stable InRelease
+Hit:10 https://downloads.k8slens.dev/apt/debian stable InRelease
+Hit:11 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu noble InRelease
+Hit:12 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:13 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Err:4 https://download.docker.com/linux/ubuntu noble InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+Hit:14 https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable InRelease
+Fetched 48.8 kB in 1s (60.9 kB/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+37 packages can be upgraded. Run 'apt list --upgradable' to see them.
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://download.docker.com/linux/ubuntu noble InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+W: Failed to fetch https://download.docker.com/linux/ubuntu/dists/noble/InRelease  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+cuda-toolkit-12-8 is already the newest version (12.8.0-1).
+The following packages were automatically installed and are no longer required:
+  bridge-utils containerd nvidia-firmware-550-550.144.03 pigz runc ubuntu-fan
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 37 not upgraded.
+=== Step 5: Add Environment Variables to ~/.bashrc ===
+=== Step 6: Source ~/.bashrc ===
+=== Installation Complete ===
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2023 NVIDIA Corporation
+Built on Fri_Jan__6_16:45:21_PST_2023
+Cuda compilation tools, release 12.0, V12.0.140
+Build cuda_12.0.r12.0/compiler.32267302_0
+Wed May 14 12:17:53 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.230.02             Driver Version: 535.230.02   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 2060        Off | 00000000:01:00.0  On |                  N/A |
+| N/A   47C    P5              26W / 115W |    432MiB /  6144MiB |     13%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      2892      G   /usr/lib/xorg/Xorg                          161MiB |
+|    0   N/A  N/A      3287      G   /usr/bin/gnome-shell                         66MiB |
+|    0   N/A  N/A      4270      G   ...erProcess --variations-seed-version       18MiB |
+|    0   N/A  N/A      5289      G   ...erProcess --variations-seed-version       70MiB |
+|    0   N/A  N/A      5600      G   /opt/google/chrome/chrome                     1MiB |
+|    0   N/A  N/A      5661      G   ...seed-version=20250513-180041.436000      100MiB |
++---------------------------------------------------------------------------------------+

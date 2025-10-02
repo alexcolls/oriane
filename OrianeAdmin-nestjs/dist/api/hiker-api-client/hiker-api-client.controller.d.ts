@@ -1,0 +1,30 @@
+import { HikerApiClientService } from './hiker-api-client.service';
+import { GetUserMediaParamsDto, GetUserFollowsParamsDto, GetMediaCommentsParamsDto } from './dto/hiker-api-query.dto';
+export declare class HikerController {
+    private readonly hikerApiService;
+    private readonly logger;
+    constructor(hikerApiService: HikerApiClientService);
+    getUserByUsername(username: string): Promise<any>;
+    getUserClips(params: GetUserMediaParamsDto): Promise<any>;
+    getUserMedias(params: GetUserMediaParamsDto): Promise<any>;
+    getUserStories(username: string): Promise<any>;
+    getUserHighlights(userId: string): Promise<any>;
+    getUserFollowers(params: GetUserFollowsParamsDto): Promise<any>;
+    getUserFollowing(params: GetUserFollowsParamsDto): Promise<any>;
+    getMediaById(id: string): Promise<any>;
+    getMediaInfoByUrl(url: string): Promise<any>;
+    getMediaInfoByCode(code: string): Promise<any>;
+    getMediaComments(params: GetMediaCommentsParamsDto): Promise<any>;
+    getMediaLikers(mediaId: string): Promise<any>;
+    getMediaTemplate(mediaId: string): Promise<any>;
+    getStoryById(storyId: string): Promise<any>;
+    getStoryByUrl(storyUrl: string): Promise<any>;
+    getTrackById(trackId: string): Promise<any>;
+    getTrackByCanonicalId(canonicalId: string): Promise<any>;
+    getTrackStreamById(trackId: string): Promise<any>;
+    searchInstagramHandles(query: string): Promise<any>;
+    getHashtagByName(name: string): Promise<any>;
+    getHashtagTopMedias(hashtagId: string): Promise<any>;
+    getHashtagRecentMedias(hashtagId: string): Promise<any>;
+    getHashtagClipsMedias(hashtagId: string): Promise<any>;
+}

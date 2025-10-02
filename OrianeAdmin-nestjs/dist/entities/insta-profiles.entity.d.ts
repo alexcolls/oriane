@@ -1,0 +1,34 @@
+import { InstaContent } from './content.entity';
+import { OrianeUser } from './oriane-user.entity';
+export declare class InstaProfile {
+    id: string;
+    username: string;
+    platform: string | null;
+    isVerified: boolean | null;
+    biography: string | null;
+    profilePic: string | null;
+    followersCount: number | null;
+    followingCount: number | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    engagementRate: number | null;
+    averageLikes: number | null;
+    averageComments: number | null;
+    accountType: string | null;
+    isBusinessAccount: boolean | null;
+    category: string | null;
+    externalUrl: string | null;
+    publicEmail: string | null;
+    lastPostDate: Date | null;
+    accountRef: string | null;
+    lastUpdated: Date | null;
+    isTracked: boolean | null;
+    isOnboarded: boolean | null;
+    fullName: string | null;
+    isPrivate: boolean | null;
+    mediaCount: number | null;
+    orianeUserId: string | null;
+    orianeUser: OrianeUser | null;
+    userId: string | null;
+    contents: InstaContent[];
+}

@@ -1,0 +1,70 @@
+4,000 docs copied · 98 docs/s8,000 docs copied · 94 docs/s12,000 docs copied · 96 docs/s16,000 docs copied · 96 docs/s20,000 docs copied · 98 docs/s24,000 docs copied · 100 docs/s28,000 docs copied · 99 docs/s32,000 docs copied · 99 docs/s36,000 docs copied · 99 docs/s40,000 docs copied · 101 docs/s44,000 docs copied · 101 docs/s48,000 docs copied · 101 docs/s52,000 docs copied · 100 docs/s56,000 docs copied · 100 docs/s60,000 docs copied · 100 docs/s64,000 docs copied · 100 docs/s68,000 docs copied · 100 docs/s72,000 docs copied · 100 docs/s76,000 docs copied · 99 docs/s80,000 docs copied · 99 docs/s
+⚠️  Warning: 239 docs failed to index, continuing…
+84,000 docs copied · 101 docs/s
+⚠️  Warning: 255 docs failed to index, continuing…
+88,000 docs copied · 102 docs/s
+⚠️  Warning: 239 docs failed to index, continuing…
+92,000 docs copied · 103 docs/s
+⚠️  Warning: 235 docs failed to index, continuing…
+96,000 docs copied · 104 docs/s
+⚠️  Warning: 266 docs failed to index, continuing…
+100,000 docs copied · 103 docs/s
+⚠️  Warning: 258 docs failed to index, continuing…
+104,000 docs copied · 103 docs/s108,000 docs copied · 103 docs/s
+⚠️  Warning: 250 docs failed to index, continuing…
+112,000 docs copied · 104 docs/s
+⚠️  Warning: 251 docs failed to index, continuing…
+116,000 docs copied · 105 docs/s
+⚠️  Warning: 250 docs failed to index, continuing…
+120,000 docs copied · 106 docs/s
+⚠️  Warning: 249 docs failed to index, continuing…
+124,000 docs copied · 106 docs/s
+⚠️  Warning: 247 docs failed to index, continuing…
+128,000 docs copied · 108 docs/s
+⚠️  Warning: 241 docs failed to index, continuing…
+132,000 docs copied · 109 docs/s
+⚠️  Warning: 500 docs failed to index, continuing…
+136,000 docs copied · 110 docs/s
+⚠️  Warning: 500 docs failed to index, continuing…
+140,000 docs copied · 111 docs/s
+⚠️  Warning: 500 docs failed to index, continuing…
+144,000 docs copied · 112 docs/s
+⚠️  Warning: 246 docs failed to index, continuing…
+148,000 docs copied · 113 docs/s
+⚠️  Warning: 241 docs failed to index, continuing…
+152,000 docs copied · 114 docs/s
+⚠️  Warning: 252 docs failed to index, continuing…
+156,000 docs copied · 115 docs/s
+⚠️  Warning: 239 docs failed to index, continuing…
+160,000 docs copied · 116 docs/s
+⚠️  Warning: 267 docs failed to index, continuing…
+164,000 docs copied · 117 docs/s
+⚠️  Warning: 251 docs failed to index, continuing…
+168,000 docs copied · 116 docs/sTraceback (most recent call last):
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/scripts/reindex_embeddings.py", line 93, in <module>
+    main()
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/scripts/reindex_embeddings.py", line 79, in main
+    helpers.bulk(client, actions, refresh=False)
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/helpers/actions.py", line 423, in bulk
+    for ok, item in streaming_bulk(client, actions, ignore_status=ignore_status, *args, **kwargs):  # type: ignore
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/helpers/actions.py", line 336, in streaming_bulk
+    for data, (ok, info) in zip(
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/helpers/actions.py", line 272, in _process_bulk_chunk
+    yield from gen
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/helpers/actions.py", line 213, in _process_bulk_chunk_error
+    raise error
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/helpers/actions.py", line 256, in _process_bulk_chunk
+    resp = client.bulk("\n".join(bulk_actions) + "\n", *args, **kwargs)
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/client/utils.py", line 176, in _wrapped
+    return func(*args, params=params, headers=headers, **kwargs)
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/client/__init__.py", line 573, in bulk
+    return self.transport.perform_request(
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/transport.py", line 457, in perform_request
+    raise e
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/transport.py", line 418, in perform_request
+    status, headers_response, data = connection.perform_request(
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/connection/http_requests.py", line 238, in perform_request
+    self._raise_error(
+  File "/home/quantium/labs/oriane/FramesEmbeddingsExtractor-lambda/venv/lib/python3.10/site-packages/opensearchpy/connection/base.py", line 315, in _raise_error
+    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(
+opensearchpy.exceptions.TransportError: TransportError(429, 'Too Many Requests')

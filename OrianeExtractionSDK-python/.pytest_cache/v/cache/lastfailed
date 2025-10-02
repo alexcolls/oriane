@@ -1,0 +1,3 @@
+{
+  "tests/test_unit_config.py::TestSDKConfig::test_config_update": true
+}

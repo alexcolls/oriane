@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 5f5a4b2ddbfa98ea6801728e7643a86cebfded21 quantium-rock <alexcollsoutumuro@gmail.com> 1757540700 +0200	branch: Created from HEAD
+5f5a4b2ddbfa98ea6801728e7643a86cebfded21 4539f44c9933728d39f408846baeee28789b1c9b quantium-rock <alexcollsoutumuro@gmail.com> 1757598268 +0200	commit: feat(api): ✨ add ingest endpoints for image, video, and text
+4539f44c9933728d39f408846baeee28789b1c9b f5c07147ff75b057326f5925c4e5f9ae4e6dff1b quantium-rock <alexcollsoutumuro@gmail.com> 1757598284 +0200	commit: feat(api): 🔎 add search endpoints for image, video, and text
+f5c07147ff75b057326f5925c4e5f9ae4e6dff1b fa13473288aabed6e94510b4f4be58f9ffd779e1 quantium-rock <alexcollsoutumuro@gmail.com> 1757598298 +0200	commit: docs(api): 📝 document ingest and search endpoints in OpenAPI
+fa13473288aabed6e94510b4f4be58f9ffd779e1 3e5dde9b78daa3c1563677a40370c8e6934af1c1 quantium-rock <alexcollsoutumuro@gmail.com> 1757598315 +0200	commit: test(api): ✅ add tests for new ingest/search endpoints
+3e5dde9b78daa3c1563677a40370c8e6934af1c1 ae2feb198ae66c5df9efd12b6afb7ad5c2de1cca quantium-rock <alexcollsoutumuro@gmail.com> 1757598360 +0200	commit: refactor: migrate to new search API endpoints and update i18n translations
+ae2feb198ae66c5df9efd12b6afb7ad5c2de1cca 9a8e2da5a9ea93bfdf8ba3513534ed258f3561b8 quantium-rock <alexcollsoutumuro@gmail.com> 1757608019 +0200	commit: fix(ui): 🛠️ align InputBox searches and uploads with new /api/core/ingest/* and /api/core/search/* responses
+9a8e2da5a9ea93bfdf8ba3513534ed258f3561b8 ed1fa4f26b6ced8dc1cb714c1198076d5dfb7496 quantium-rock <alexcollsoutumuro@gmail.com> 1757608153 +0200	commit: fix(api): 🔧 remove trailing slash in upstream text search path to avoid 404
+ed1fa4f26b6ced8dc1cb714c1198076d5dfb7496 eeb85baba2e5860b7615a8b0ed8156a0c34658c1 quantium-rock <alexcollsoutumuro@gmail.com> 1757608333 +0200	commit: feat: update search endpoints to use new SEARCH_API structure
+eeb85baba2e5860b7615a8b0ed8156a0c34658c1 a94f67602bb10567320607fc8ed297133346cbbd quantium-rock <alexcollsoutumuro@gmail.com> 1757608351 +0200	commit: cleanup: remove unused unified search endpoint
+a94f67602bb10567320607fc8ed297133346cbbd 816e17b43fbf10217e9a271767db1da965126cd7 quantium-rock <alexcollsoutumuro@gmail.com> 1757622813 +0200	commit: fix: standardize text search response format
+816e17b43fbf10217e9a271767db1da965126cd7 560b2756916b6ea81d6f89b81264cfa294a1f628 quantium-rock <alexcollsoutumuro@gmail.com> 1757623157 +0200	commit: fix: update import paths in ingestion endpoints
+560b2756916b6ea81d6f89b81264cfa294a1f628 a3e3aee2236e06e2c6f68d0380f661e5c5931e6c quantium-rock <alexcollsoutumuro@gmail.com> 1757623328 +0200	commit: debug: add logging to image ingestion endpoint
+a3e3aee2236e06e2c6f68d0380f661e5c5931e6c dc91844e0855253076474e5ae4f9ddaa8b21b689 quantium-rock <alexcollsoutumuro@gmail.com> 1757642642 +0200	commit: 🔎 Fix: unify image/video search responses with text response shape

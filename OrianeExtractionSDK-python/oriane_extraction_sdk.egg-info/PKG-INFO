@@ -1,0 +1,465 @@
+Metadata-Version: 2.4
+Name: oriane-extraction-sdk
+Version: 1.0.0
+Summary: GPU-accelerated video processing SDK for frame extraction, deduplication, and embedding inference
+Home-page: https://github.com/yourusername/OrianeExtractionSDK-python
+Author: Alex Colls
+Author-email: alex@oriane.xyz
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Multimedia :: Video
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: python-dotenv>=0.19.0
+Requires-Dist: opencv-python>=4.5.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: torch>=1.9.0
+Requires-Dist: transformers>=4.20.0
+Requires-Dist: pillow>=8.3.0
+Requires-Dist: boto3>=1.20.0
+Requires-Dist: psycopg2-binary>=2.9.0
+Requires-Dist: qdrant-client>=1.0.0
+Requires-Dist: pytest>=6.0.0
+Requires-Dist: flake8>=4.0.0
+Requires-Dist: black>=22.0.0
+Requires-Dist: mypy>=0.910
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: pre-commit>=2.15.0; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest>=6.0.0; extra == "test"
+Requires-Dist: pytest-cov>=3.0.0; extra == "test"
+Requires-Dist: pytest-mock>=3.6.0; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# OrianeExtractionSDK-python
+
+**GPU-accelerated video processing SDK for frame extraction, deduplication, and embedding inference**
+
+*Author: Alex Colls*
+
+## Overview
+
+The OrianeExtractionSDK is a comprehensive Python SDK designed for GPU-accelerated video processing. It provides a complete pipeline for:
+
+- 🎬 **Scene frame extraction** using FFmpeg
+- ✂️ **GPU-accelerated border cropping** 
+- 🔍 **Frame deduplication** using perceptual hashing
+- 🧠 **Embedding inference** with CLIP models
+- ☁️ **S3 integration** for storage
+- 📊 **Vector database storage** with Qdrant
+- 🗄️ **PostgreSQL integration** for metadata
+
+## Features
+
+### Core Processing
+- **Video Border Cropping**: Automatically detect and crop letterbox/pillarbox borders
+- **Scene Frame Extraction**: Extract key frames using FFmpeg scene detection
+- **Frame Deduplication**: Remove duplicate frames using perceptual hashing
+- **Embedding Generation**: Generate embeddings using CLIP models (Jina CLIP v2 supported)
+- **Batch Processing**: Process multiple videos concurrently
+
+### Storage & Integration
+- **S3 Integration**: Upload/download videos and frames to/from S3
+- **Vector Database**: Store embeddings in Qdrant for similarity search
+- **PostgreSQL**: Track processing status and errors
+- **Local Mode**: Run without external dependencies for development
+
+### Configuration
+- **Environment-based**: All configuration via `.env` files
+- **Flexible**: Override settings programmatically
+- **GPU Support**: CUDA and MPS acceleration
+- **Resource Management**: Configurable batch sizes and worker counts
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8+
+- FFmpeg (for video processing)
+- NVIDIA GPU with CUDA (optional, for GPU acceleration)
+
+### Quick Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/OrianeExtractionSDK-python.git
+cd OrianeExtractionSDK-python
+
+# Run the setup script
+./scripts/setup.sh
+
+# Configure your environment
+cp .env.example .env
+# Edit .env with your settings
+```
+
+### Manual Installation
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install SDK in development mode
+pip install -e .
+```
+
+## Quick Start
+
+```python
+from oriane_extraction_sdk import OrianeExtractionSDK
+
+# Initialize SDK
+sdk = OrianeExtractionSDK()
+
+# Process a single video
+result = sdk.process_video("/path/to/video.mp4")
+
+if result.success:
+    print(f"Processed {result.frames_extracted} frames")
+    print(f"Generated {result.embeddings_generated} embeddings")
+    print(f"Processing time: {result.processing_time:.2f}s")
+else:
+    print(f"Error: {result.error}")
+```
+
+## Configuration
+
+### Environment Variables
+
+The SDK uses environment variables for configuration. Copy `.env.example` to `.env` and configure:
+
+```bash
+# Video Processing
+VP_ENABLE_CROP=1
+VP_ENABLE_DEDUP=1
+VP_BATCH_SIZE=8
+VP_MAX_WORKERS=4
+
+# Model Settings
+MODEL_NAME=jinaai/jina-clip-v2
+MODEL_DEVICE=cuda
+
+# Storage
+S3_VIDEOS_BUCKET=your-videos-bucket
+S3_FRAMES_BUCKET=your-frames-bucket
+QDRANT_URL=http://localhost:6333
+
+# Database
+DB_HOST=localhost
+DB_NAME=oriane
+DB_USER=oriane
+DB_PASSWORD=your-password
+
+# Operational
+LOCAL_MODE=0
+SKIP_UPLOAD=0
+```
+
+### Programmatic Configuration
+
+```python
+from oriane_extraction_sdk import OrianeExtractionSDK, SDKConfig
+
+# Custom configuration
+config = SDKConfig(
+    batch_size=16,
+    max_workers=8,
+    model_device="cuda",
+    local_mode=True
+)
+
+sdk = OrianeExtractionSDK(config=config)
+```
+
+## Usage Examples
+
+### Basic Video Processing
+
+```python
+from oriane_extraction_sdk import OrianeExtractionSDK
+
+sdk = OrianeExtractionSDK()
+
+# Process single video
+result = sdk.process_video("/path/to/video.mp4")
+print(f"Success: {result.success}")
+print(f"Frames: {result.frames_extracted}")
+print(f"Time: {result.processing_time:.2f}s")
+```
+
+### Batch Processing
+
+```python
+video_paths = [
+    "/path/to/video1.mp4",
+    "/path/to/video2.mp4",
+    "/path/to/video3.mp4"
+]
+
+results = sdk.process_videos(video_paths)
+
+for result in results:
+    if result.success:
+        print(f"✅ {result.video_path}: {result.frames_extracted} frames")
+    else:
+        print(f"❌ {result.video_path}: {result.error}")
+```
+
+### Frame Extraction Only
+
+```python
+# Extract frames without embedding processing
+frames = sdk.extract_frames_only("/path/to/video.mp4")
+print(f"Extracted {len(frames)} frames")
+
+for frame_path in frames:
+    print(f"Frame: {frame_path}")
+```
+
+### Download and Process from S3
+
+```python
+# Download video from S3 and process
+result = sdk.download_and_process_video(
+    platform="instagram",
+    code="video_code"
+)
+```
+
+### Custom Processing Pipeline
+
+```python
+# Access individual processors
+border_processor = sdk.border_crop_processor
+scene_processor = sdk.scene_frame_processor
+dedup_processor = sdk.deduplication_processor
+embedding_processor = sdk.embedding_processor
+
+# Custom pipeline
+video_path = Path("/path/to/video.mp4")
+cropped_video = border_processor.crop_video(video_path)
+frames = scene_processor.extract_frames(cropped_video, output_dir)
+unique_frames = dedup_processor.remove_duplicates(frames)
+embeddings = embedding_processor.encode_frames(unique_frames)
+```
+
+## Architecture
+
+### Core Components
+
+- **`OrianeExtractionSDK`**: Main SDK class orchestrating the pipeline
+- **`SDKConfig`**: Configuration management with environment variable support
+- **`ProcessingResult`**: Result object containing processing metrics
+
+### Processors
+
+- **`BorderCropProcessor`**: GPU-accelerated video border cropping
+- **`SceneFrameProcessor`**: Scene-based frame extraction using FFmpeg
+- **`DeduplicationProcessor`**: Perceptual hash-based frame deduplication
+- **`EmbeddingProcessor`**: CLIP model-based embedding generation
+- **`StorageProcessor`**: S3, PostgreSQL, and Qdrant integration
+
+### Pipeline Flow
+
+1. **Border Cropping** (optional): Remove letterbox/pillarbox borders
+2. **Scene Extraction**: Extract key frames using scene detection
+3. **Deduplication** (optional): Remove duplicate frames
+4. **S3 Upload** (async): Upload frames to S3
+5. **Embedding Generation**: Generate embeddings in batches
+6. **Vector Storage**: Store embeddings in Qdrant
+7. **Database Update**: Mark processing status
+
+## Scripts
+
+### Setup Script
+
+```bash
+./scripts/setup.sh
+```
+
+Sets up the development environment:
+- Creates virtual environment
+- Installs dependencies
+- Creates configuration files
+- Checks system requirements
+
+### Test Script
+
+```bash
+./scripts/test.sh
+```
+
+Runs comprehensive tests:
+- Import tests
+- Configuration tests
+- SDK initialization tests
+- Unit tests (if available)
+- Code quality checks
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+./scripts/test.sh
+
+# Run specific tests
+python -m pytest tests/
+
+# Run with coverage
+python -m pytest tests/ --cov=oriane_extraction_sdk
+```
+
+### Code Quality
+
+```bash
+# Format code
+black oriane_extraction_sdk/
+
+# Lint code
+flake8 oriane_extraction_sdk/
+
+# Type checking
+mypy oriane_extraction_sdk/
+```
+
+### Building Distribution
+
+```bash
+# Build package
+python setup.py sdist bdist_wheel
+
+# Install locally
+pip install -e .
+```
+
+## Dependencies
+
+### Core
+- `python-dotenv`: Environment configuration
+- `opencv-python`: Video processing
+- `numpy`: Numerical operations
+- `torch`: Deep learning framework
+- `transformers`: CLIP models
+- `pillow`: Image processing
+
+### Storage
+- `boto3`: AWS S3 integration
+- `psycopg2-binary`: PostgreSQL integration
+- `qdrant-client`: Vector database
+
+### Development
+- `pytest`: Testing framework
+- `flake8`: Code linting
+- `black`: Code formatting
+- `mypy`: Type checking
+
+## Performance
+
+### GPU Acceleration
+- CUDA support for NVIDIA GPUs
+- MPS support for Apple Silicon
+- Automatic fallback to CPU
+
+### Memory Management
+- Configurable batch sizes
+- GPU memory monitoring
+- Automatic cleanup
+
+### Concurrency
+- Multi-threaded frame processing
+- Async S3 operations
+- Parallel video processing
+
+## Troubleshooting
+
+### Common Issues
+
+**FFmpeg not found**
+```bash
+# Ubuntu/Debian
+sudo apt-get install ffmpeg
+
+# macOS
+brew install ffmpeg
+
+# CentOS/RHEL
+sudo yum install ffmpeg
+```
+
+**CUDA out of memory**
+```python
+# Reduce batch size
+sdk.update_config(batch_size=4)
+
+# Or use CPU
+sdk.update_config(model_device="cpu")
+```
+
+**S3 permissions**
+```bash
+# Check AWS credentials
+aws configure list
+
+# Test S3 access
+aws s3 ls s3://your-bucket/
+```
+
+### Logging
+
+```python
+import logging
+
+# Enable debug logging
+logging.getLogger('oriane_extraction_sdk').setLevel(logging.DEBUG)
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Run the test suite
+6. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Support
+
+For issues and questions:
+- GitHub Issues: [Create an issue](https://github.com/yourusername/OrianeExtractionSDK-python/issues)
+- Documentation: [Wiki](https://github.com/yourusername/OrianeExtractionSDK-python/wiki)
+
+---
+
+**OrianeExtractionSDK** - Powering GPU-accelerated video processing pipelines
