@@ -1,0 +1,203 @@
+# =============================================================================
+# Kubernetes Deployment for Pipeline API - GPU Node (Video Processing Workers)
+# =============================================================================
+# This deployment runs GPU-intensive video processing workers on GPU nodes.
+# They will handle the heavy computational tasks delegated by the API frontend.
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oriane-pipeline-worker
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+    component: worker
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oriane-pipeline-api
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: oriane-pipeline-api
+        component: worker
+        tier: backend
+    spec:
+      # Schedule on GPU nodes
+      nodeSelector:
+        nodeType: gpu
+        workload: video-processing
+      
+      # Tolerate GPU node taints
+      tolerations:
+      - key: "nodeType"
+        operator: "Equal"
+        value: "gpu"
+        effect: "NoSchedule"
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      
+      # Service account for pod security
+      serviceAccountName: oriane-pipeline-api-sa
+      
+      # Security context
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      
+      containers:
+      - name: worker
+        image: 509399609859.dkr.ecr.us-east-1.amazonaws.com/oriane-pipeline-api:0.9.0-20250715-235937
+        imagePullPolicy: Always
+        
+        # Resource requirements for GPU video processing nodes
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "16Gi"
+            cpu: "8000m"
+            nvidia.com/gpu: "1"
+        
+        # Environment variables
+        env:
+        - name: API_HOST
+          value: "0.0.0.0"
+        - name: API_PORT
+          value: "8000"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NODE_TYPE
+          value: "gpu"
+        - name: WORKER_MODE
+          value: "true"  # This is a worker node, not the API frontend
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: "all"
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: "compute,utility"
+        - name: CUDA_VISIBLE_DEVICES
+          value: "0"
+        
+        # Environment from ConfigMap and Secret
+        envFrom:
+        - configMapRef:
+            name: oriane-pipeline-api-config
+        - secretRef:
+            name: oriane-pipeline-api-secrets
+        
+        # Ports (for internal communication and monitoring)
+        ports:
+        - containerPort: 8001
+          name: worker-port
+          protocol: TCP
+        
+        # Health checks for workers
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "python3 -c 'import sys; sys.exit(0)'"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+        
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "python3 -c 'import sys; sys.exit(0)'"
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        
+        # Volume mounts
+        volumeMounts:
+        - name: tmp-storage
+          mountPath: /tmp
+        - name: app-logs
+          mountPath: /app/logs
+        - name: shared-storage
+          mountPath: /app/shared
+        - name: model-cache
+          mountPath: /app/.cache
+      
+      # Volumes
+      volumes:
+      - name: tmp-storage
+        emptyDir:
+          sizeLimit: 5Gi
+      - name: app-logs
+        emptyDir:
+          sizeLimit: 1Gi
+      - name: shared-storage
+        emptyDir:
+          sizeLimit: 10Gi
+      - name: model-cache
+        emptyDir:
+          sizeLimit: 10Gi
+      
+      # Restart policy
+      restartPolicy: Always
+      
+      # Termination grace period (longer for GPU cleanup)
+      terminationGracePeriodSeconds: 60
+
+---
+# =============================================================================
+# Horizontal Pod Autoscaler for GPU Workers
+# =============================================================================
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: oriane-pipeline-worker-hpa
+  namespace: oriane-pipeline-api
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: oriane-pipeline-worker
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 600
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60

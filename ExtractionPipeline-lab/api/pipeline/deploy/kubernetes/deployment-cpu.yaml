@@ -1,0 +1,190 @@
+# =============================================================================
+# Kubernetes Deployment for Pipeline API - CPU Node (FastAPI Frontend)
+# =============================================================================
+# This deployment runs the FastAPI frontend on CPU nodes to handle API requests.
+# It will receive requests and delegate GPU-intensive tasks to GPU workers.
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oriane-pipeline-api
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+    component: api
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: oriane-pipeline-api
+      component: api
+  template:
+    metadata:
+      labels:
+        app: oriane-pipeline-api
+        component: api
+        tier: frontend
+    spec:
+      # Schedule on CPU nodes (avoid GPU nodes)
+      nodeSelector:
+        kubernetes.io/arch: amd64  # Use x86_64 CPU instances
+      
+      # Tolerate system node taints but avoid GPU nodes
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      
+      # Anti-affinity to avoid GPU nodes
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "nodeType"
+                operator: "NotIn"
+                values: ["gpu"]
+              - key: "workload"
+                operator: "NotIn"
+                values: ["video-processing"]
+      
+      # Service account for pod security
+      serviceAccountName: oriane-pipeline-api-sa
+      
+      # Security context
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      
+      containers:
+      - name: api
+        image: 509399609859.dkr.ecr.us-east-1.amazonaws.com/oriane-pipeline-api:0.9.0-20250715-235937
+        imagePullPolicy: Always
+        
+        # Resource requirements for CPU nodes
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        
+        # Environment variables
+        env:
+        - name: API_HOST
+          value: "0.0.0.0"
+        - name: API_PORT
+          value: "8000"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NODE_TYPE
+          value: "cpu"
+        - name: WORKER_MODE
+          value: "false"  # This is the API frontend, not a worker
+        
+        # Environment from ConfigMap and Secret
+        envFrom:
+        - configMapRef:
+            name: oriane-pipeline-api-config
+        - secretRef:
+            name: oriane-pipeline-api-secrets
+        
+        # Ports
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
+        
+        # Volume mounts
+        volumeMounts:
+        - name: tmp-storage
+          mountPath: /tmp
+        - name: app-logs
+          mountPath: /app/logs
+      
+      # Volumes
+      volumes:
+      - name: tmp-storage
+        emptyDir:
+          sizeLimit: 1Gi
+      - name: app-logs
+        emptyDir:
+          sizeLimit: 500Mi
+      
+      # Restart policy
+      restartPolicy: Always
+      
+      # Termination grace period
+      terminationGracePeriodSeconds: 30
+
+---
+# =============================================================================
+# Service Account for Pipeline API
+# =============================================================================
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: oriane-pipeline-api-sa
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+
+---
+# =============================================================================
+# ClusterRole for Pipeline API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: oriane-pipeline-api-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+
+---
+# =============================================================================
+# ClusterRoleBinding for Pipeline API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oriane-pipeline-api-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: oriane-pipeline-api-role
+subjects:
+- kind: ServiceAccount
+  name: oriane-pipeline-api-sa
+  namespace: oriane-pipeline-api

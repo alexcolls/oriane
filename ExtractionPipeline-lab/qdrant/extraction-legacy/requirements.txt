@@ -1,0 +1,10 @@
+# Dependencies for the extraction pipeline
+# Note: This script primarily uses the core/py/pipeline/.venv virtual environment
+# which already contains most required dependencies (psycopg2, sqlalchemy, etc.)
+
+# Additional dependencies specific to this extraction script
+python-dotenv>=1.0.0
+
+# Testing dependencies (optional)
+pytest>=7.0.0
+pytest-mock>=3.6.0

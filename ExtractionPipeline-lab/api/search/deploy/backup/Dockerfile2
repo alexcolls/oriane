@@ -1,0 +1,259 @@
+# ------------------------------------------------------------ #
+#  Oriane Visual Extraction Pipeline - FastAPI + GPU Processing
+#  Multi-stage Dockerfile combining FastAPI service with GPU-accelerated
+#  video processing capabilities from core/py/pipeline
+# ------------------------------------------------------------ #
+
+# ------------------------------------------------------------ #
+#  Stage 1: Base CUDA environment with FFmpeg
+# ------------------------------------------------------------ #
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04 as base
+
+LABEL maintainer="alex@oriane.xyz"
+LABEL description="Oriane Visual Extraction Pipeline - FastAPI + GPU Processing"
+LABEL com.nvidia.volumes.needed="nvidia_driver"
+
+# Enable all NVIDIA capabilities
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
+
+# CUDA environment paths
+ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:\
+/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:${LD_LIBRARY_PATH}
+ENV PATH=/usr/local/cuda/bin:${PATH}
+
+# System dependencies and build tools
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        # Core system packages
+        ca-certificates curl wget git \
+        # Python and development tools
+        python3 python3-pip python3-setuptools python3-dev \
+        # Build tools for FFmpeg
+        autoconf automake build-essential cmake libtool pkg-config \
+        yasm nasm texinfo ninja-build \
+        # Video processing dependencies
+        zlib1g-dev libnuma-dev libbz2-dev liblzma-dev \
+        libopus-dev libx264-dev libx265-dev libvpx-dev libfdk-aac-dev \
+        # OpenCV dependencies
+        libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 \
+        libgstreamer1.0-0 libgstreamer-plugins-base1.0-0 \
+        # Additional utilities
+        htop nano vim && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create symlink for python
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# ------------------------------------------------------------ #
+#  Stage 2: Build custom FFmpeg with CUDA support
+# ------------------------------------------------------------ #
+FROM base as ffmpeg-builder
+
+# Build nv-codec-headers for CUDA encode/decode support
+RUN mkdir -p /opt/ffmpeg_sources && cd /opt/ffmpeg_sources && \
+    git clone --depth 1 https://github.com/FFmpeg/nv-codec-headers.git && \
+    cd nv-codec-headers && make && make install
+
+# Build FFmpeg with comprehensive CUDA support
+RUN cd /opt/ffmpeg_sources && \
+    git clone --depth 1 https://github.com/FFmpeg/FFmpeg.git ffmpeg && \
+    cd ffmpeg && \
+    PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" ./configure \
+        --prefix="/usr/local" \
+        --pkg-config-flags="--static" \
+        --extra-cflags="-I/usr/local/cuda/include" \
+        --extra-ldflags="-L/usr/local/cuda/lib64/stubs -L/usr/local/cuda/lib64 -L/usr/local/nvidia/lib64" \
+        --extra-libs="-lpthread -lm" \
+        --enable-gpl --enable-nonfree \
+        --enable-cuda --enable-cuda-nvcc --enable-cuvid --enable-nvenc \
+        --enable-libnpp \
+        --enable-libx264 --enable-libx265 \
+        --enable-libvpx --enable-libfdk-aac && \
+    make -j"$(nproc)" && \
+    make install && \
+    hash -r
+
+# Remove CUDA stub libraries to use runtime libraries
+RUN rm -rf /usr/local/cuda/lib64/stubs
+
+# ------------------------------------------------------------ #
+#  Stage 3: Python dependencies and application
+# ------------------------------------------------------------ #
+FROM base as application
+
+# Copy FFmpeg from builder stage
+COPY --from=ffmpeg-builder /usr/local/bin/ff* /usr/local/bin/
+COPY --from=ffmpeg-builder /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from=ffmpeg-builder /usr/local/include /usr/local/include
+COPY --from=ffmpeg-builder /usr/local/lib/lib* /usr/local/lib/
+
+# Update library cache
+RUN ldconfig
+
+# Set working directory
+WORKDIR /app
+
+# ------------------------------------------------------------ #
+#  Python dependencies - Combined requirements
+# ------------------------------------------------------------ #
+
+# Copy requirements files
+COPY api/requirements.txt /app/api-requirements.txt
+COPY core/py/pipeline/requirements.txt /app/pipeline-requirements.txt
+
+# Create combined requirements file
+RUN cat > /app/combined-requirements.txt << 'EOF'
+# ====================================================
+# FastAPI Service Dependencies
+# ====================================================
+fastapi>=0.104.0,<1.0.0
+uvicorn[standard]>=0.24.0,<1.0.0
+python-dotenv>=1.0,<2.0
+python-multipart>=0.0.6,<1.0.0
+pydantic>=2.4.0,<3.0.0
+httpx>=0.25.0,<1.0.0
+
+# ====================================================
+# Authentication & Security
+# ====================================================
+python-jose[cryptography]>=3.3.0,<4.0.0
+passlib[bcrypt]>=1.7.4,<2.0.0
+python-multipart>=0.0.6,<1.0.0
+
+# ====================================================
+# CUDA 12.1 PyTorch wheels
+# ====================================================
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.3.0+cu121
+torchvision==0.18.0+cu121
+
+# ====================================================
+# Core Processing Dependencies
+# ====================================================
+# UX / logging / profiling
+rich>=13.7,<14
+click>=8.1,<9
+pynvml==11.5.0
+psutil>=5.9.8,<6.0
+
+# AWS / S3
+boto3>=1.38,<2.0
+jmespath==1.0.0
+
+# Database
+psycopg2-binary==2.9.10
+
+# Progress tracking
+tqdm>=4.66,<5.0
+
+# Vector database
+qdrant-client[grpc]>=1.14,<2.0
+
+# Computer vision
+opencv-python-headless>=4.10,<5.0
+numpy>=1.26,<2.0
+
+# ML Models - Jina CLIP v2
+sentence-transformers>=3.3,<3.4
+transformers==4.50.0
+einops>=0.8
+timm>=0.9
+pillow>=10.2
+safetensors>=0.4
+
+# Scene detection
+scenedetect[opencv]>=0.6.2,<1.0.0
+
+# Image processing
+imagehash>=4.3.1,<5.0.0
+
+# Additional utilities
+requests>=2.31.0,<3.0.0
+aiofiles>=23.0.0,<24.0.0
+EOF
+
+# Install Python dependencies
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    python -m pip install --no-cache-dir -r /app/combined-requirements.txt
+
+# ------------------------------------------------------------ #
+#  SSL Certificates (optional - uncomment if needed)
+# ------------------------------------------------------------ #
+# COPY cert/aws-rds-global.pem /usr/local/share/ca-certificates/aws-rds-global.crt
+# RUN update-ca-certificates
+# ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+# ENV REQUESTS_CA_BUNDLE=$SSL_CERT_FILE
+
+# ------------------------------------------------------------ #
+#  Application code
+# ------------------------------------------------------------ #
+
+# Copy API service code
+COPY api/ /app/api/
+COPY core/py/pipeline/src /app/core/pipeline/src/
+COPY core/py/pipeline/config /app/core/pipeline/config/
+COPY core/py/pipeline/entrypoint.py /app/core/pipeline/
+COPY core/py/pipeline/models /app/core/pipeline/models/
+
+# Set up Python path to include both API and core modules
+ENV PYTHONPATH=/app:/app/api:/app/core/pipeline
+ENV PYTHONUNBUFFERED=1
+
+# Create necessary directories
+RUN mkdir -p /app/temp /app/output /app/logs /app/models
+
+# Set permissions
+RUN chmod -R 755 /app
+
+# ------------------------------------------------------------ #
+#  Runtime configuration
+# ------------------------------------------------------------ #
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8000/ || exit 1
+
+# Default command - FastAPI service
+CMD ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+
+# ------------------------------------------------------------ #
+#  Build arguments and metadata
+# ------------------------------------------------------------ #
+ARG BUILD_DATE
+ARG VERSION
+ARG GIT_COMMIT
+
+LABEL build_date=$BUILD_DATE
+LABEL version=$VERSION
+LABEL git_commit=$GIT_COMMIT
+LABEL nvidia.cuda.version="12.4.1"
+LABEL ffmpeg.version="latest"
+LABEL python.version="3.10"
+
+# ------------------------------------------------------------ #
+#  Usage Examples:
+#
+#  Build:
+#    docker build -t oriane-api:latest \
+#      --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+#      --build-arg VERSION=1.2.0 \
+#      --build-arg GIT_COMMIT=$(git rev-parse HEAD) \
+#      -f api/Dockerfile .
+#
+#  Run FastAPI service:
+#    docker run --gpus all --env-file .env \
+#      -p 8000:8000 oriane-api:latest
+#
+#  Run with pipeline processing:
+#    docker run --gpus all --env-file .env \
+#      -e JOB_INPUT='[{"platform":"instagram","code":"abc123"}]' \
+#      oriane-api:latest python /app/core/pipeline/entrypoint.py
+#
+#  Interactive debugging:
+#    docker run --gpus all --env-file .env -it \
+#      --entrypoint /bin/bash oriane-api:latest
+# ------------------------------------------------------------ #

@@ -1,0 +1,9 @@
+[
+  {
+    "func": "encode_batch",
+    "sec": 0.0001,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  }
+]

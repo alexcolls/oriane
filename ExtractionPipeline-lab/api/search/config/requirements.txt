@@ -1,0 +1,55 @@
+# ====================================================
+# FastAPI Service Dependencies
+# ====================================================
+fastapi>=0.104.0,<1.0.0
+uvicorn[standard]>=0.24.0,<1.0.0
+python-dotenv>=1.0,<2.0
+python-multipart>=0.0.6,<1.0.0
+pydantic>=2.4.0,<3.0.0
+httpx>=0.25.0,<1.0.0
+
+# ====================================================
+# Authentication & Security
+# ====================================================
+python-jose[cryptography]>=3.3.0,<4.0.0
+passlib[bcrypt]>=1.7.4,<2.0.0
+
+# ====================================================
+# CUDA 12.1 PyTorch wheels
+# ====================================================
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.3.0+cu121
+torchvision==0.18.0+cu121
+
+# ====================================================
+# Core Processing Dependencies
+# ====================================================
+rich>=13.7,<14
+click>=8.1,<9
+pynvml==11.5.0
+psutil>=5.9.8,<6.0
+boto3>=1.38,<2.0
+jmespath==1.0.0
+psycopg2-binary==2.9.10
+tqdm>=4.66,<5.0
+qdrant-client[grpc]>=1.14,<2.0
+opencv-python-headless>=4.10,<5.0
+numpy>=1.26,<2.0
+sentence-transformers>=3.3,<3.4
+transformers==4.50.0
+einops>=0.8
+timm>=0.9
+pillow>=10.2
+safetensors>=0.4
+scenedetect[opencv]>=0.6.2,<1.0.0
+imagehash>=4.3.1,<5.0.0
+requests>=2.31.0,<3.0.0
+aiofiles>=23.0.0,<24.0.0
+redis>=5.0.0,<6.0.0
+
+# ====================================================
+# Optional for future use
+# ====================================================
+# torchaudio
+# flash-attention
+# xformers

@@ -1,0 +1,39 @@
+{
+  "collection_name": "watched_frames",
+  "vector_params": {
+    "size": 512,
+    "distance": "Cosine"
+  },
+  "payload_indexes": [
+    {
+      "field_name": "id",
+      "field_schema": "keyword"
+    },
+    {
+      "field_name": "platform",
+      "field_schema": "keyword"
+    },
+    {
+      "field_name": "video_code",
+      "field_schema": "keyword"
+    },
+    {
+      "field_name": "created_at",
+      "field_schema": "datetime"
+    }
+  ],
+  "payload_data": [
+    {
+      "field_name": "path",
+      "field_schema": "keyword"
+    },
+    {
+      "field_name": "frame_number",
+      "field_schema": "integer"
+    },
+    {
+      "field_name": "frame_second",
+      "field_schema": "float"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install minimal dependencies for testing
+RUN pip install fastapi uvicorn python-dotenv
+
+# Create a simple test application
+COPY <<EOF /app/test_search_app.py
+from fastapi import FastAPI
+import os
+
+app = FastAPI()
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "service": "search-api"}
+
+@app.get("/")
+async def root():
+    return {"message": "Visual Search API is running", "version": "1.2.0"}
+
+@app.get("/debug/settings")
+async def debug_settings():
+    return {
+        "api_name": os.getenv("API_NAME", "Visual Search API"),
+        "api_port": os.getenv("API_PORT", "8000"),
+        "environment": os.getenv("ENVIRONMENT", "development")
+    }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+EOF
+
+# Expose port
+EXPOSE 8000
+
+# Run the test application
+CMD ["python", "test_search_app.py"]

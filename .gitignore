@@ -40,6 +40,9 @@ ENV/
 env/
 .venv/
 vpf-env/
+.env/
+bin/
+pyvenv.cfg
 
 # Node
 node_modules/
@@ -69,6 +72,9 @@ logs/
 tmp/
 .output/
 .backup/
+output/
+test/
+tests/videos/
 
 # Build artifacts & binaries
 *.tar
@@ -76,19 +82,27 @@ tmp/
 *.bin
 gpu_batch_crop
 
-# Database
+# Database & Storage
 *.db
 *.sqlite
 *.sqlite3
 qdrant/storage/
+storage/
+*.mmap
+*.dat
+*.sst
+*.json.bak
 
-# Model files
+# Model files & cache
 *.pth
 *.pt
 *.onnx
 *.h5
 *.pb
 models/
+.model-cache/
+model-cache/
+checkpoints/
 
 # Media files
 *.mp4

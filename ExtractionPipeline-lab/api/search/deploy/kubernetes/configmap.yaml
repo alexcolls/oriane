@@ -1,0 +1,78 @@
+# =============================================================================
+# ConfigMap for Search API Configuration
+# =============================================================================
+# This ConfigMap contains non-sensitive configuration data for the FastAPI 
+# search service.
+# =============================================================================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: search-api-config
+  namespace: search
+  labels:
+    app: search-api
+    component: config
+data:
+  # API Configuration
+  API_NAME: "Oriane Search API"
+  API_PORT: "8000"
+  API_HOST: "0.0.0.0"
+  LOG_LEVEL: "info"
+  
+  # CORS Configuration
+  CORS_ORIGINS: "*"
+  
+  # Performance Configuration
+  VP_MAX_WORKERS: "4"
+  VP_BATCH_SIZE: "8"
+  VP_SAMPLE_FPS: "0.1"
+  
+  # Feature Switches
+  VP_ENABLE_CROP: "1"
+  VP_ENABLE_DEDUP: "1"
+  
+  # Video Processing Configuration
+  VP_SCENE_THRESH: "0.22"
+  VP_MIN_FRAMES: "3"
+  VP_TOLERANCE: "5"
+  VP_EDGE_THRESH: "10"
+  VP_DHASH_SIZE: "8"
+  VP_SOLID_STD: "5.0"
+  VP_SOLID_MIN_DIM: "10"
+  
+  # FFMPEG Configuration
+  VP_CROP_PROBES: "3"
+  VP_CROP_CLIP_SECS: "2"
+  VP_CROP_SAFE_MARGIN: "4"
+  VP_CROP_HWACCEL: "cuda"
+  VP_CROP_CROPDETECT: "24:16:0"
+  VP_CROP_ENCODER: "h264_nvenc"
+  VP_CROP_PRESET: "p5"
+  VP_CROP_TUNE: "hq"
+  VP_CROP_CQ: "23"
+  VP_MIN_CROP_RATIO: "0.10"
+  VP_DOWNSCALE: "0.5"
+  
+  # AWS Configuration
+  AWS_REGION: "us-east-1"
+  
+  # S3 Configuration
+  S3_BUCKET_NAME: "oriane-contents"
+  S3_APP_BUCKET: "oriane-app"
+  S3_FRAMES_BUCKET: "oriane-frames"
+  
+  # Qdrant Configuration
+  QDRANT_URL: "http://qdrant.admin.oriane.xyz:6333/"
+  QDRANT_COLLECTION: "watched_frames"
+  QDRANT_DIM: "512"
+  
+  # Model Configuration
+  CLIP_MODEL: "jinaai/jina-clip-v2"
+  
+  # Path Configuration
+  VP_OUTPUT_DIR: "/app/output"
+  VP_TMP_DIR: "/app/output/tmp/videos"
+  VP_FRAMES_DIR: "/app/output/tmp/frames"
+  VP_LOGS_DIR: "/app/output/logs"
+  VP_REPORTS_DIR: "/app/output/reports"

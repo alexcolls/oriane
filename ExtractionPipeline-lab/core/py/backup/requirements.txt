@@ -1,0 +1,35 @@
+# requirements.txt
+# ------------------------------------------------------------------
+# use NVIDIA wheels that already contain CUDA 12.1 runtime
+--extra-index-url https://download.pytorch.org/whl/cu121
+# ------------------------------------------------------------------
+
+# ---------- AWS / S3 ----------
+boto3>=1.38,<2.0
+jmespath==1.0.0               # boto3 dependency, pinned explicitly
+
+# ---------- Postgres ----------
+psycopg2-binary==2.9.10        # provides import psycopg2
+
+# ---------- Env + misc helpers ----------
+python-dotenv>=1.0
+tqdm>=4.66                     # nice progress bars
+
+# ---------- Vector DB ----------
+qdrant-client[grpc]>=1.14      # gRPC transport gives best throughput
+
+# ---------- Computer-Vision stack ----------
+opencv-python-headless>=4.10,<5.0
+numpy>=1.26,<2.0               # OpenCV & Torch happy with this range
+
+# ---------- PyTorch + CUDA 12.1 ----------
+torch==2.3.0+cu121
+torchvision==0.18.0+cu121
+# (torchaudio wheel is optional; omit unless you need it)
+
+# ---------- Jina-CLIP v2 model & friends ----------
+transformers==4.50.0
+einops>=0.8
+timm>=0.9
+pillow>=10.2
+safetensors>=0.4

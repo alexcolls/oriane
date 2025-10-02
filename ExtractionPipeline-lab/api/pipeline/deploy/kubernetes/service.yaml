@@ -1,0 +1,64 @@
+# =============================================================================
+# Kubernetes Service for Pipeline API
+# =============================================================================
+# This manifest creates a LoadBalancer service for the FastAPI pipeline service
+# with session affinity and health check configuration.
+# =============================================================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: oriane-pipeline-api-service
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+    component: api
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "30"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "10"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+spec:
+  type: LoadBalancer
+  selector:
+    app: oriane-pipeline-api
+    component: api
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: 8000
+    protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800  # 3 hours
+
+---
+# =============================================================================
+# Internal Service for Pipeline API (ClusterIP)
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: oriane-pipeline-api-internal
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+    component: api
+spec:
+  type: ClusterIP
+  selector:
+    app: oriane-pipeline-api
+    component: api
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    protocol: TCP

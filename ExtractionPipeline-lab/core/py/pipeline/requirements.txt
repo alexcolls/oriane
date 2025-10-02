@@ -1,0 +1,49 @@
+# ------------------------------------------------------------------
+# CUDA 12.1 wheels for torch & torchvision
+--extra-index-url https://download.pytorch.org/whl/cu121
+# ------------------------------------------------------------------
+
+############  UX / logging / profiling  ############
+rich>=13.7,<14
+click>=8.1,<9
+python-dotenv>=1.0,<2.0
+pynvml==11.5.0
+psutil>=5.9.8,<6.0         # 5.9.8 is the first wheel with cp312 support
+
+############  AWS / S3  ############
+boto3>=1.38,<2.0
+jmespath==1.0.0             # explicit to avoid 1.1.0 breaking changes
+
+############  Postgres  ############
+psycopg2-binary==2.9.10
+
+############  Progress helper  ############
+tqdm>=4.66,<5.0
+
+############  Vector DB  ############
+# 1.x has the stable gRPC implementation; 2.x introduces breaking API changes.
+qdrant-client[grpc]>=1.14,<2.0
+
+############  Computer-Vision stack ############
+opencv-python-headless>=4.10,<5.0
+numpy>=1.26,<2.0            # OpenCV 4.x & Torch compiled against NumPy 1.x
+
+############  PyTorch + CUDA 12.1 ############
+torch==2.3.0+cu121
+torchvision==0.18.0+cu121
+# torchaudio # for future audio features
+
+############  Jina-CLIP v2 model & friends ############
+# sentence-transformers pulls in transformers + safetensors automatically,
+# but we pin them explicitly to stay reproducible.
+sentence-transformers>=3.3,<3.4
+transformers==4.50.0
+einops>=0.8
+timm>=0.9
+pillow>=10.2
+safetensors>=0.4
+
+############  OPTIONAL GPU speed-ups ############
+# Installed later via extras_gpu.sh so they never break the core env.
+# flash-attention
+# xformers

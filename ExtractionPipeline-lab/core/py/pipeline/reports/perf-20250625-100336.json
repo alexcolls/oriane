@@ -1,0 +1,65 @@
+[
+  {
+    "func": "download_video",
+    "sec": 1.0891,
+    "cpu": 0.13,
+    "ram": 3,
+    "gpu": 0
+  },
+  {
+    "func": "crop_video",
+    "sec": 3.7078,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "_ffmpeg_scene_frames",
+    "sec": 0.8977,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "extract_frames",
+    "sec": 1.5532,
+    "cpu": 1.9,
+    "ram": 61,
+    "gpu": 0
+  },
+  {
+    "func": "remove_duplicates",
+    "sec": 0.1565,
+    "cpu": 0.17,
+    "ram": 3,
+    "gpu": 0
+  },
+  {
+    "func": "encode_batch",
+    "sec": 33.0558,
+    "cpu": 117.85,
+    "ram": 1554,
+    "gpu": 1815
+  },
+  {
+    "func": "upsert_embeddings",
+    "sec": 0.8816,
+    "cpu": 0.37,
+    "ram": 8,
+    "gpu": 0
+  },
+  {
+    "func": "VideoPipeline.run",
+    "sec": 39.4215,
+    "cpu": 120.32,
+    "ram": 1626,
+    "gpu": 1815
+  },
+  {
+    "func": "download_video",
+    "sec": 3.1494,
+    "cpu": 0.17,
+    "ram": 1,
+    "gpu": 0
+  }
+]

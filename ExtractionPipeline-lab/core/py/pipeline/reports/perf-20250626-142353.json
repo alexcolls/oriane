@@ -1,0 +1,9 @@
+[
+  {
+    "func": "encode_text_batch",
+    "sec": 31.5128,
+    "cpu": 112.5,
+    "ram": 1412,
+    "gpu": 2782
+  }
+]

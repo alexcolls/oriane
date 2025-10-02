@@ -1,0 +1,12 @@
+Collecting sqlalchemy
+  Downloading sqlalchemy-2.0.41-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.6 kB)
+Collecting greenlet>=1 (from sqlalchemy)
+  Downloading greenlet-3.2.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (4.1 kB)
+Requirement already satisfied: typing-extensions>=4.6.0 in /home/quantium/labs/oriane/ExtractionPipeline/core/py/pipeline/.venv/lib/python3.10/site-packages (from sqlalchemy) (4.14.0)
+Downloading sqlalchemy-2.0.41-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 14.3 MB/s eta 0:00:00
+Downloading greenlet-3.2.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (582 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 582.2/582.2 kB 12.2 MB/s eta 0:00:00
+Installing collected packages: greenlet, sqlalchemy
+
+Successfully installed greenlet-3.2.3 sqlalchemy-2.0.41

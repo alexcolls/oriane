@@ -1,0 +1,204 @@
+# =============================================================================
+# Kubernetes Deployment for Pipeline API with GPU Support
+# =============================================================================
+# This manifest deploys the FastAPI pipeline service to Kubernetes with:
+# - GPU node scheduling
+# - Horizontal Pod Autoscaler support
+# - Resource limits and requests
+# - Health checks and readiness probes
+# - ConfigMap and Secret mounting
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oriane-pipeline-api
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+    version: v1.0.0
+    component: api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: oriane-pipeline-api
+  template:
+    metadata:
+      labels:
+        app: oriane-pipeline-api
+        version: v1.0.0
+        component: api
+    spec:
+      # Node selector for GPU nodes
+      nodeSelector:
+        accelerator: nvidia-tesla-v100  # Adjust based on your GPU type
+      
+      # Tolerations for GPU nodes
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      
+      # Service account for pod security
+      serviceAccountName: oriane-pipeline-api-sa
+      
+      # Security context
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000 
+        fsGroup: 1000
+      
+      containers:
+      - name: oriane-pipeline-api
+        image: 509399609859.dkr.ecr.us-east-1.amazonaws.com/oriane-pipeline-api:latest
+        imagePullPolicy: IfNotPresent
+        
+        # Resource requirements
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: 1
+        
+        # Environment variables
+        env:
+        - name: API_HOST
+          value: "0.0.0.0"
+        - name: API_PORT
+          value: "8000"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NVIDIA_VISIBLE_DEVICES
+          value: "all"
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: "compute,utility"
+        
+        # Environment from ConfigMap
+        envFrom:
+        - configMapRef:
+            name: oriane-pipeline-api-config
+        - secretRef:
+            name: oriane-pipeline-api-secrets
+        
+        # Ports
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
+        
+        # Volume mounts
+        volumeMounts:
+        - name: app-config
+          mountPath: /app/config
+          readOnly: true
+        - name: shared-storage
+          mountPath: /app/shared
+        - name: tmp-storage
+          mountPath: /tmp
+        
+        # Startup probe for slow-starting containers
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+          successThreshold: 1
+      
+      # Volumes
+      volumes:
+      - name: app-config
+        configMap:
+          name: oriane-pipeline-api-config
+      - name: shared-storage
+        persistentVolumeClaim:
+          claimName: oriane-pipeline-shared-pvc
+      - name: tmp-storage
+        emptyDir:
+          sizeLimit: 1Gi
+      
+      # Image pull secrets
+      imagePullSecrets:
+      - name: registry-secret
+      
+      # Restart policy
+      restartPolicy: Always
+      
+      # Termination grace period
+      terminationGracePeriodSeconds: 30
+
+---
+# =============================================================================
+# Service Account for Pipeline API
+# =============================================================================
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: oriane-pipeline-api-sa
+  namespace: oriane-pipeline-api
+  labels:
+    app: oriane-pipeline-api
+
+---
+# =============================================================================
+# ClusterRole for Pipeline API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: oriane-pipeline-api-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+
+---
+# =============================================================================
+# ClusterRoleBinding for Pipeline API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oriane-pipeline-api-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: oriane-pipeline-api-role
+subjects:
+- kind: ServiceAccount
+  name: oriane-pipeline-api-sa
+  namespace: oriane-pipeline-api

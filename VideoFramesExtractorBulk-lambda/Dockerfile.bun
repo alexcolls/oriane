@@ -1,0 +1,21 @@
+FROM oven/bun:1
+
+# Download and extract FFmpeg (example using a static build URL)
+RUN curl -L -o ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz \
+  && tar -xJf ffmpeg.tar.xz --strip-components=1 -C /usr/local/bin ffmpeg-*-static/ffmpeg \
+  && rm ffmpeg.tar.xz
+
+WORKDIR /app
+
+# Copy files
+COPY package*.json tsconfig.json index.ts .env ./
+
+# Install deps & build
+RUN bun install
+RUN bun run build
+
+# Expose port if needed (optional for API use)
+EXPOSE 3000
+
+# Run with Bun (you can change this to `start` script or main file)
+CMD ["bun", "index.js"]

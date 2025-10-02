@@ -1,0 +1,176 @@
+# =============================================================================
+# Kubernetes Deployment for Search API - CPU Node (FastAPI Frontend)
+# =============================================================================
+# This deployment runs the FastAPI frontend on CPU nodes to handle API requests.
+# It will receive requests and delegate GPU-intensive tasks to GPU workers.
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oriane-search-api
+  namespace: oriane-search-api
+  labels:
+    app: oriane-search-api
+    component: api
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: oriane-search-api
+      component: api
+  template:
+    metadata:
+      labels:
+        app: oriane-search-api
+        component: api
+        tier: frontend
+    spec:
+      # Schedule on available nodes
+      nodeSelector: {}
+      
+      # Tolerate system node taints
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      
+      # Service account for pod security
+      serviceAccountName: search-api-sa
+      
+      # Security context
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      
+      containers:
+      - name: api
+        image: 509399609859.dkr.ecr.us-east-1.amazonaws.com/oriane-search-api:latest
+        imagePullPolicy: Always
+        
+        # Resource requirements for CPU nodes
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        
+        # Environment variables
+        env:
+        - name: API_HOST
+          value: "0.0.0.0"
+        - name: API_PORT
+          value: "8000"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NODE_TYPE
+          value: "cpu"
+        - name: WORKER_MODE
+          value: "false"  # This is the API frontend, not a worker
+        
+        # Environment from ConfigMap and Secret
+        envFrom:
+        - configMapRef:
+            name: oriane-search-api-config
+        - secretRef:
+            name: oriane-search-api-secrets
+        
+        # Ports
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
+        
+        # Volume mounts
+        volumeMounts:
+        - name: tmp-storage
+          mountPath: /tmp
+        - name: app-logs
+          mountPath: /app/logs
+      
+      # Volumes
+      volumes:
+      - name: tmp-storage
+        emptyDir:
+          sizeLimit: 1Gi
+      - name: app-logs
+        emptyDir:
+          sizeLimit: 500Mi
+      
+      # Restart policy
+      restartPolicy: Always
+      
+      # Termination grace period
+      terminationGracePeriodSeconds: 30
+
+---
+# =============================================================================
+# Service Account for Search API
+# =============================================================================
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: search-api-sa
+  namespace: oriane-search-api
+  labels:
+    app: oriane-search-api
+
+---
+# =============================================================================
+# ClusterRole for Search API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: search-api-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+
+---
+# =============================================================================
+# ClusterRoleBinding for Search API
+# =============================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: search-api-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: search-api-role
+subjects:
+- kind: ServiceAccount
+  name: search-api-sa
+  namespace: oriane-search-api

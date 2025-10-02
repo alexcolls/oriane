@@ -1,0 +1,19 @@
+# AWS Certificate Manager Import Command
+# Run this command to import the certificate into AWS ACM:
+
+aws acm import-certificate \
+    --certificate fileb://./certs/oriane-certificate.pem \
+    --private-key fileb://./certs/oriane-private-key.pem \
+    --region us-east-1 \
+    --tags Key=Name,Value=oriane-inc-certificate \
+           Key=Organization,Value="Oriane Inc" \
+           Key=Domain,Value="pipeline.api.qdrant.admin.oriane.xyz" \
+           Key=CreatedBy,Value=oriane-cert-script
+
+# After importing, you can get the certificate ARN with:
+# aws acm list-certificates --region us-east-1 --query 'CertificateSummaryList[?DomainName==`pipeline.api.qdrant.admin.oriane.xyz`].CertificateArn' --output text
+
+# To update your .env file with the certificate ARN:
+# 1. Run the import command above
+# 2. Get the ARN from the output
+# 3. Update ALB_CERTIFICATE_ARN in your .env file

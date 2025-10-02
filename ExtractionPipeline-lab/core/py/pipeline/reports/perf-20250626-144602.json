@@ -1,0 +1,9 @@
+[
+  {
+    "func": "encode_image_batch",
+    "sec": 36.7526,
+    "cpu": 132.64,
+    "ram": 1409,
+    "gpu": 1812
+  }
+]

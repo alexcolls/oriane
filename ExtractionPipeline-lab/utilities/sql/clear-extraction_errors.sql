@@ -1,0 +1,1 @@
+TRUNCATE TABLE extraction_errors RESTART IDENTITY

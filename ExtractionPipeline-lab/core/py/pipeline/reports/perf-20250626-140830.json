@@ -1,0 +1,226 @@
+[
+  {
+    "func": "download_video",
+    "sec": 2.7663,
+    "cpu": 0.58,
+    "ram": 5,
+    "gpu": 0
+  },
+  {
+    "func": "crop_video",
+    "sec": 0.0002,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "_ffmpeg_scene_frames",
+    "sec": 6.9924,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "extract_frames",
+    "sec": 15.2898,
+    "cpu": 8.7,
+    "ram": 9,
+    "gpu": 0
+  },
+  {
+    "func": "remove_duplicates",
+    "sec": 2.514,
+    "cpu": 2.8,
+    "ram": 10,
+    "gpu": 0
+  },
+  {
+    "func": "encode_batch",
+    "sec": 53.0044,
+    "cpu": 161.62,
+    "ram": 1776,
+    "gpu": 1804
+  },
+  {
+    "func": "upsert_embeddings",
+    "sec": 1.6814,
+    "cpu": 0.36,
+    "ram": 6,
+    "gpu": 0
+  },
+  {
+    "func": "VideoPipeline.run",
+    "sec": 72.5254,
+    "cpu": 173.52,
+    "ram": 1801,
+    "gpu": 1804
+  },
+  {
+    "func": "download_video",
+    "sec": 1.8563,
+    "cpu": 0.19,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "crop_video",
+    "sec": 0.0001,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "_ffmpeg_scene_frames",
+    "sec": 4.2752,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "extract_frames",
+    "sec": 5.1754,
+    "cpu": 3.06,
+    "ram": 35,
+    "gpu": 0
+  },
+  {
+    "func": "remove_duplicates",
+    "sec": 0.1456,
+    "cpu": 0.15,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "encode_batch",
+    "sec": 0.8864,
+    "cpu": 2.16,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "upsert_embeddings",
+    "sec": 0.1042,
+    "cpu": 0.01,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "VideoPipeline.run",
+    "sec": 6.3324,
+    "cpu": 5.4,
+    "ram": 35,
+    "gpu": 0
+  },
+  {
+    "func": "download_video",
+    "sec": 1.2018,
+    "cpu": 0.13,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "crop_video",
+    "sec": 0.0001,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "_ffmpeg_scene_frames",
+    "sec": 1.9505,
+    "cpu": 0.01,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "extract_frames",
+    "sec": 4.4543,
+    "cpu": 2.62,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "remove_duplicates",
+    "sec": 0.9117,
+    "cpu": 1.01,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "encode_batch",
+    "sec": 7.0907,
+    "cpu": 16.21,
+    "ram": 4,
+    "gpu": 0
+  },
+  {
+    "func": "upsert_embeddings",
+    "sec": 0.4081,
+    "cpu": 0.01,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "VideoPipeline.run",
+    "sec": 12.893,
+    "cpu": 19.88,
+    "ram": 4,
+    "gpu": 0
+  },
+  {
+    "func": "download_video",
+    "sec": 1.5514,
+    "cpu": 0.21,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "crop_video",
+    "sec": 0.0002,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "_ffmpeg_scene_frames",
+    "sec": 2.7313,
+    "cpu": 0.0,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "extract_frames",
+    "sec": 3.7095,
+    "cpu": 2.34,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "remove_duplicates",
+    "sec": 0.1274,
+    "cpu": 0.14,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "encode_batch",
+    "sec": 1.0375,
+    "cpu": 2.68,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "upsert_embeddings",
+    "sec": 0.1063,
+    "cpu": 0.01,
+    "ram": 0,
+    "gpu": 0
+  },
+  {
+    "func": "VideoPipeline.run",
+    "sec": 5.0134,
+    "cpu": 5.19,
+    "ram": 0,
+    "gpu": 0
+  }
+]

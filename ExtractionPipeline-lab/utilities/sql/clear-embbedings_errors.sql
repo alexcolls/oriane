@@ -1,0 +1,1 @@
+TRUNCATE TABLE embedding_errors RESTART IDENTITY

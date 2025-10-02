@@ -1,0 +1,38 @@
+name: Validate Workflow
+
+on:
+  push:
+    paths:
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Validate workflow syntax
+      run: |
+        echo "Validating GitHub Actions workflow files..."
+        
+        # Check for common syntax issues
+        for file in .github/workflows/*.yml .github/workflows/*.yaml; do
+          if [ -f "$file" ]; then
+            echo "Checking $file..."
+            
+            # Basic YAML syntax check
+            python -c "import yaml; yaml.safe_load(open('$file'))" || {
+              echo "❌ YAML syntax error in $file"
+              exit 1
+            }
+            
+            echo "✅ $file is valid YAML"
+          fi
+        done
+        
+        echo "✅ All workflow files validated successfully!"

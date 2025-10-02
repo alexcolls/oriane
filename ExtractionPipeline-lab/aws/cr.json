@@ -1,0 +1,30 @@
+{
+    "type": "EC2",
+    "imageId": "ami-0e76a1d67c7ef3543",
+    "allocationStrategy": "BEST_FIT_PROGRESSIVE",
+    "minvCpus": 0,
+    "maxvCpus": 8,
+    "desiredvCpus": 4,
+    "instanceTypes": [
+        "g5.xlarge",
+        "g4dn.xlarge",
+        "p3.2xlarge"
+    ],
+    "subnets": [
+        "subnet-0e22e824327172265",
+        "subnet-049b5277041e9bc5d",
+        "subnet-0a7566c72481f41fa",
+        "subnet-0df646eacc0b79218"
+    ],
+    "securityGroupIds": [
+        "sg-02d85493b9785b289",
+        "sg-068b4768a091df508"
+    ],
+    "instanceRole": "arn:aws:iam::509399609859:instance-profile/ecsInstanceRole",
+    "tags": {},
+    "ec2Configuration": [
+        {
+            "imageType": "ECS_AL2_NVIDIA"
+        }
+    ]
+}
