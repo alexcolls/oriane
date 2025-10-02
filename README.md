@@ -354,6 +354,54 @@ npm install
 npm run dev
 ```
 
+## 📚 Documentation
+
+For in-depth technical documentation, research materials, and additional resources, see the **`_docs/`** directory:
+
+### 📂 Documentation Structure
+
+- **`_docs/TECH/`** - Technical documentation
+  - **Architecture/** - System architecture diagrams (DrawIO files)
+    - `ArchDiagrams.drawio` - Comprehensive architecture diagrams
+    - `ArchInfra.drawio` - Infrastructure architecture
+    - `SQLschemas.drawio` - Database schemas
+    - `ETLs.drawio` - ETL pipeline diagrams
+    - `Qdrant/` - Qdrant vector DB schema examples
+  - **Research/** - AI/ML research and documentation
+    - `Embeddings/` - Embeddings research (CLIP models, Qdrant on AWS)
+    - `Models/` - AI model research (SSCD, ViT, filtering strategies)
+    - `Scalability.docx` - Scalability analysis and planning
+    - `APIs Frameworks table.xlsx` - API framework comparisons
+  - **Samples/** - Sample data and debugging resources
+    - `Debugging Samples/` - Test videos and debugging materials
+    - `Hiker Responses/` - API response examples
+    - `Video Samples.xlsx` - Test video catalog
+  - `DNS.xlsx` - DNS configuration
+  - `ETLs pricing.xlsx` - Cost analysis for ETL pipelines
+
+- **`_docs/arch/`** - Architecture visualizations
+  - System architecture diagrams (PNG/WebP)
+  - Database schemas
+  - Pipeline flow diagrams
+
+- **`_docs/ai-images/`** - AI/ML concept visualizations
+  - RAG architectures (naive, agentic, graph, multimodal)
+  - Embedding strategies and types
+  - Vector indexes and databases for AI apps
+  - Context engineering and compression techniques
+
+- **`_docs/pics/`** - Screenshots and UI mockups
+  - Application screenshots
+  - Development progress captures
+
+- **`_docs/acquisition/`** - Content acquisition data
+  - Instagram handles and keywords for monitoring
+
+- **`_docs/alex linkedin pack/`** - Brand assets
+  - LinkedIn banners and profile images
+
+> 💡 **Tip**: Use Draw.io to open and edit `.drawio` files for architecture diagrams.
+
 ## 🔒 Security
 
 - All `.env` files are excluded from version control
