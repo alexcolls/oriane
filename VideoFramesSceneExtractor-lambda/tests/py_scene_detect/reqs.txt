@@ -1,0 +1,3 @@
+opencv-python
+scenedetect
+yt_dlp

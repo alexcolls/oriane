@@ -24,8 +24,10 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+.venv/lib/
+.venv/lib64/
+venv/lib/
+venv/lib64/
 parts/
 sdist/
 var/
@@ -41,7 +43,8 @@ env/
 .venv/
 vpf-env/
 .env/
-bin/
+.venv/bin/
+venv/bin/
 pyvenv.cfg
 
 # Node
@@ -73,8 +76,8 @@ tmp/
 .output/
 .backup/
 output/
-test/
-tests/videos/
+**/test/videos/
+**/tests/videos/
 
 # Build artifacts & binaries
 *.tar
@@ -109,9 +112,10 @@ checkpoints/
 *.avi
 *.mov
 *.mkv
-test/
-tests/
-videos/
+**/videos/
+**/*.mp4
+**/*.avi
+**/*.mov
 
 # Jupyter
 .ipynb_checkpoints

@@ -1,0 +1,23 @@
+{
+  "name": "extract_frames",
+  "module": "extract_frames_advanced.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/ffprobe-static": "^2.0.3",
+    "@types/node": "^22.15.17",
+    "ts-node": "^10.9.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.3",
+    "ffprobe-static": "^3.1.0",
+    "glob": "^11.0.2",
+    "opencv4nodejs": "^5.6.0",
+    "opencv4nodejs-prebuilt": "^5.3.4",
+    "p-map": "^7.0.3",
+    "sharp": "^0.34.1"
+  }
+}

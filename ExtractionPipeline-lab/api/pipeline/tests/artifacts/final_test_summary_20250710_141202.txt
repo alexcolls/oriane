@@ -1,0 +1,38 @@
+=============================================================================
+FINAL TEST SUMMARY - 20250710_141202
+=============================================================================
+
+Cleanup Operations Completed:
+- Kubernetes namespace 'pipeline' deletion: SUCCESS
+- EKS cluster 'gpu-test-cluster' deletion: SUCCESS
+- ECR images cleanup: SUCCESS
+- Local Docker cleanup: SUCCESS
+
+Environment Details:
+- AWS Region: us-east-1
+- Cluster Name: gpu-test-cluster
+- Namespace: pipeline
+- Project Root: /home/quantium/labs/oriane/ExtractionPipeline
+- Artifacts Directory: /home/quantium/labs/oriane/ExtractionPipeline/artifacts
+
+System Information:
+- Timestamp: 20250710_141202
+- User: quantium
+- Host: ubuntu
+- OS: Linux ubuntu 6.8.0-52-generic #53-Ubuntu SMP PREEMPT_DYNAMIC Sat Jan 11 00:06:25 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+Docker System Info:
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          1         1         931.7MB   0B (0%)
+Containers      2         2         6.089MB   0B (0%)
+Local Volumes   2         2         54.21GB   0B (0%)
+Build Cache     0         0         0B        0B
+
+Remaining AWS Resources:
+- EKS Clusters: NAME				REGION		EKSCTL CREATED
+oriane-search-api-cluster	us-east-1	False
+- ECR Repositories: frames-comparer	sscd-model	oriane-search-api-v1	oriane-admin-bun	pipeline-api	frame-comparison-model	video-frames-scene-extractor	extraction-pipeline-image-py	video-frames-extractor-bulk	frames-embeddings-extractor	extraction-pipeline-image	oriane-app-bun	oriane-api-gpu	search-api	video-frames-extractor	instagram-video-downloader-bulk	instagram-content-collector	oriane-app-bun/dev	oriane-search-api-v1-dev
+
+=============================================================================
+CLEANUP COMPLETED SUCCESSFULLY
+=============================================================================

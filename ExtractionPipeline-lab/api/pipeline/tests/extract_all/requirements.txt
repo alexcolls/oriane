@@ -1,0 +1,23 @@
+# Python requirements for Extract All Pipeline Test Suite
+# Core async and HTTP libraries
+asyncio
+aiohttp>=3.8.0
+aiofiles>=22.0.0
+httpx>=0.25.0
+
+# AWS and cloud services
+boto3>=1.28.0
+botocore>=1.31.0
+
+# Configuration and environment
+python-dotenv>=1.0.0
+
+# Data handling
+qdrant-client>=1.6.0
+
+# Logging (if using structured logging)
+structlog>=23.0.0
+
+# Optional: Testing and development
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

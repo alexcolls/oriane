@@ -1,0 +1,21 @@
+services:
+  qdrant-test:
+    image: qdrant/qdrant:v1.14.1
+    container_name: qdrant-test-disposable
+    ports:
+      - "6334:6333"  # HTTP API port (using 6334 to avoid conflicts)
+      - "6335:6334"  # gRPC port
+    environment:
+      QDRANT__SERVICE__API_KEY: "test-key-12345"
+    tmpfs:
+      - /qdrant/storage  # Use tmpfs for truly disposable storage
+    volumes:
+      - /tmp/qdrant-test-data:/qdrant/data:rw
+    restart: no
+    command: ["./qdrant", "--config-path", "/qdrant/config/production.yaml"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

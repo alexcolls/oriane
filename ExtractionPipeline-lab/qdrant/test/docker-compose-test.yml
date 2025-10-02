@@ -1,0 +1,12 @@
+services:
+  qdrant-test:
+    image: qdrant/qdrant:v1.14.1
+    container_name: qdrant-test
+    ports:
+      - "6335:6333"  # Use different port to avoid conflicts
+      - "6336:6334"  # gRPC port
+    environment:
+      QDRANT__SERVICE__API_KEY: "test-api-key-123456"
+    tmpfs:
+      - /qdrant/storage  # Use tmpfs for disposable storage
+    command: ["./qdrant", "--config-path", "/qdrant/config/production.yaml"]
