@@ -1,0 +1,35 @@
+{
+  "collection_name": "user_images",
+  "description": "collection of images uploaded by oriane app users for search purposes. Image embeddings are created for this collection.",
+  "shards": 1,
+  "segments": 2,
+  "vector_params": {
+    "size": 512,
+    "distance": "Cosine",
+    "type": "image"
+  },
+  "payload_indexes": [
+    {
+      "field_name": "id",
+      "field_schema": "keyword",
+      "description": "deterministic uuid creatred from: user_id + timestamp + img/<filename>.<extension>"
+    },
+    {
+      "field_name": "user_id",
+      "field_schema": "keyword",
+      "description": "FK: oriane app user's random uuid"
+    },
+    {
+      "field_name": "created_at",
+      "field_schema": "integer",
+      "description": "timestamp of the entry"
+    }
+  ],
+  "payload_data": [
+    {
+      "field_name": "path",
+      "field_schema": "keyword",
+      "description": "path to the image in oriane-app/<user_id>/img/<image_id>.<extension> S3 bucket. TODO: change to CDN url once implemented"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "collection_name": "watched_frames",
+  "description": "collection of frames extracted from videos extracted from watched videos by the oriane admin app. Framees embeddings are created for this collection.",
+  "shards": 4,
+  "segments": 8,
+  "vector_params": {
+    "size": 512,
+    "distance": "Cosine",
+    "type": "image"
+  },
+  "payload_indexes": [
+    {
+      "field_name": "id",
+      "field_schema": "keyword",
+      "description": "deterministic uuid creatred from: platform + video_code + frame_number + frame_second"
+    },
+    {
+      "field_name": "video_id",
+      "field_schema": "keyword",
+      "description": "FK: to qdrant collection watched_videos.id"
+    },
+    {
+      "field_name": "platform",
+      "field_schema": "keyword",
+      "description": "platform of the video, i.e. instagram, tiktok, youtube, etc."
+    },
+    {
+      "field_name": "video_code",
+      "field_schema": "keyword",
+      "description": "unique code of the video by platform"
+    },
+    {
+      "field_name": "created_at",
+      "field_schema": "integer",
+      "description": "timestamp of the entry"
+    }
+  ],
+  "payload_data": [
+    {
+      "field_name": "path",
+      "field_schema": "keyword",
+      "description": "path to the frame image in oriane-frames/<platform>/<video_code>/<frame_number>_<frame_second>.png S3 bucket. TODO: change to CDN url once implemented"
+    },
+    {
+      "field_name": "frame_number",
+      "field_schema": "integer",
+      "description": "number of the frame extracted, starting from 1"
+    },
+    {
+      "field_name": "frame_second",
+      "field_schema": "float",
+      "description": "second of the frame extracted"
+    }
+  ]
+}

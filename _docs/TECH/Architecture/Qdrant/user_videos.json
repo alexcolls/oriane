@@ -1,0 +1,50 @@
+{
+  "collection_name": "user_videos",
+  "description": "collection of videos uploaded by oriane app users for search purposes. No embeddings are created for this collection, instead, the frames are stored in the user_frames collection.",
+  "shards": 1,
+  "segments": 2,
+  "vector_params": {
+    "size": 512,
+    "distance": "Cosine",
+    "type": "none"
+  },
+  "payload_indexes": [
+    {
+      "field_name": "id",
+      "field_schema": "keyword",
+      "description": "deterministic uuid creatred from: user_id + upload_timestamp + vid/<filename>.<extension>"
+    },
+    {
+      "field_name": "user_id",
+      "field_schema": "keyword",
+      "description": "FK: oriane app user's random uuid"
+    },
+    {
+      "field_name": "created_at",
+      "field_schema": "integer",
+      "description": "timestamp of the entry"
+    }
+  ],
+  "payload_data": [
+    {
+      "field_name": "path",
+      "field_schema": "keyword",
+      "description": "path to the video in oriane-app/<user_id>/vid/<video_id>.mp4 S3 bucket. TODO: change to CDN url once implemented"
+    },
+    {
+      "field_name": "duration",
+      "field_schema": "float",
+      "description": "duration of the video in seconds"
+    },
+    {
+      "field_name": "size",
+      "field_schema": "integer",
+      "description": "size of the video in bytes"
+    },
+    {
+      "field_name": "frames",
+      "field_schema": "integer",
+      "description": "number of frames extracted from the video"
+    }
+  ]
+}
